@@ -1,0 +1,90 @@
+// Botones
+
+$sizesBtn: (
+  "small": (
+    "phone": (
+      height: 26px,
+      font: 14px,
+      padding-y: 20px,
+      padding-x: 5px,
+      border: 1px,
+      height-only-icon: 20px,
+    ),
+    "desk": (
+      height: 22px,
+      font: 14px,
+      padding-y: 20px,
+      padding-x: 3px,
+      border: 1px,
+      height-only-icon: 17px,
+    ),
+  ),
+  "medium": (
+    "phone": (
+      height: 32px,
+      font: 16px,
+      padding-y: 20px,
+      padding-x: 7px,
+      border: 1px,
+      height-only-icon: 25px,
+    ),
+    "desk": (
+      height: 26px,
+      font: 16px,
+      padding-y: 20px,
+      padding-x: 4px,
+      border: 1px,
+      height-only-icon: 20px,
+    ),
+  ),
+  "large": (
+    "phone": (
+      height: 40px,
+      font: 20px,
+      padding-y: 20px,
+      padding-x: 9px,
+      border: 1px,
+      height-only-icon: 32px,
+    ),
+    "desk": (
+      height: 36px,
+      font: 20px,
+      padding-y: 20px,
+      padding-x: 7px,
+      border: 1px,
+      height-only-icon: 29px,
+    ),
+  ),
+);
+
+// Fin botones
+
+$screen-breakpoint-phone: 768px;
+
+// Colores
+$colores: (
+  "primary": (
+    default: #55c1e6,
+    hover: #55c1e6cc,
+    active: #55c1e6cc,
+    disabled: #55c1e680,
+  ),
+  "danger": (
+    default: #dc3545,
+    hover: #dc3545cc,
+    active: #dc3545cc,
+    disabled: #dc354580,
+  ),
+  "alert": (
+    default: #ffc107,
+    hover: #ffc107cc,
+    active: #ffc107cc,
+    disabled: #ffc10780,
+  ),
+  "success": (
+    default: #218838,
+    hover: #218838cc,
+    active: #218838cc,
+    disabled: #21883880,
+  ),
+);
