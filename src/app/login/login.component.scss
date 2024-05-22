@@ -82,13 +82,12 @@
       text-align: center;
       grid-column: 2/3;
       grid-row: 2/3;
-      padding-bottom: 37px;
-      padding-top: 25px;
+     
   
       img {
         object-fit: cover;
-        max-width: 250px;
-        max-height: 80px;
+        max-width: 50%;
+        max-height: 50%;
   
         @media only screen and (max-width: 778px) {
           max-width: min(100%, 220px);
@@ -101,7 +100,7 @@
       grid-column: 2/3;
       grid-row: 3/4;
       width: 400px;
-      height: 350px;
+      height: 100%;
   
       @media only screen and (max-width: 778px) {
         width: calc(100vw - 40px);

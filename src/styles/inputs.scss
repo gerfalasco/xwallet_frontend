@@ -1,0 +1,300 @@
+@import "./variables";
+/*
+
+  INPUTS:
+  Estilos base para todos los inputs
+
+*/
+
+@mixin input-small {
+  height: map-get($sizesInputs, "small", "desk", "height");
+  font-size: map-get($sizesInputs, "small", "desk", "font");
+
+  $paddingX: map-get($sizesInputs, "small", "desk", "padding-x");
+  $paddingY: map-get($sizesInputs, "small", "desk", "padding-y");
+
+  padding: $paddingX $paddingY;
+
+  @media screen and (max-width: 767px) {
+    height: map-get($sizesInputs, "small", "phone", "height");
+    font-size: map-get($sizesInputs, "small", "phone", "font");
+
+    $paddingX: map-get($sizesInputs, "small", "phone", "padding-x");
+    $paddingY: map-get($sizesInputs, "small", "phone", "padding-y");
+
+    padding: $paddingX $paddingY;
+  }
+}
+
+@mixin input-medium {
+  height: map-get($sizesInputs, "medium", "desk", "height");
+  font-size: map-get($sizesInputs, "medium", "desk", "font");
+
+  $paddingX: map-get($sizesInputs, "medium", "desk", "padding-x");
+  $paddingY: map-get($sizesInputs, "medium", "desk", "padding-y");
+
+  padding: $paddingX $paddingY;
+
+  @media screen and (max-width: 767px) {
+    height: map-get($sizesInputs, "medium", "phone", "height");
+    font-size: map-get($sizesInputs, "medium", "phone", "font");
+
+    $paddingX: map-get($sizesInputs, "medium", "phone", "padding-x");
+    $paddingY: map-get($sizesInputs, "medium", "phone", "padding-y");
+
+    padding: $paddingX $paddingY;
+  }
+}
+
+@mixin input-large {
+  height: map-get($sizesInputs, "large", "desk", "height");
+  font-size: map-get($sizesInputs, "large", "desk", "font");
+
+  $paddingX: map-get($sizesInputs, "large", "desk", "padding-x");
+  $paddingY: map-get($sizesInputs, "large", "desk", "padding-y");
+
+  padding: $paddingX $paddingY;
+
+  @media screen and (max-width: 767px) {
+    height: map-get($sizesInputs, "large", "phone", "height");
+    font-size: map-get($sizesInputs, "large", "phone", "font");
+
+    $paddingX: map-get($sizesInputs, "large", "phone", "padding-x");
+    $paddingY: map-get($sizesInputs, "large", "phone", "padding-y");
+
+    padding: $paddingX $paddingY;
+  }
+
+  // TODO:Incluir mixin de group
+}
+
+.cb-form,
+.cb-form-field,
+.cb-input-group {
+  &--small {
+    .cb-input {
+      @include input-small;
+    }
+  }
+
+  &--large {
+    .cb-input {
+      @include input-large;
+    }
+  }
+}
+
+.cb-input {
+  @include input-medium;
+
+  &--small {
+    @include input-small;
+  }
+
+  &--large {
+    @include input-large;
+  }
+
+  background-color: transparent;
+}
+
+// Text
+
+input[type="text"].cb-input {
+  border: 1px solid #ebedf0;
+  margin: 0 !important;
+
+  &:hover {
+    border-color: #55c1e6;
+  }
+
+  &:active {
+    border-color: #55c1e6;
+  }
+
+  &:focus {
+    border-color: #55c1e6;
+  }
+}
+
+// Number
+
+input[type="number"].cb-input {
+  border: 1px solid #ebedf0;
+  margin: 0 !important;
+
+  &:hover {
+    border-color: #55c1e6;
+  }
+
+  &:active {
+    border-color: #55c1e6;
+  }
+
+  &:focus {
+    border-color: #55c1e6;
+  }
+}
+
+// Date
+
+input[type="date"].cb-input {
+  color: #656565;
+  width: min-content !important;
+  border: 1px solid #ebedf0;
+  margin: 0 !important;
+
+  &:hover {
+    border-color: #55c1e6;
+  }
+
+  &:active {
+    border-color: #55c1e6;
+  }
+
+  &:focus {
+    border-color: #55c1e6;
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    filter: invert(100%) brightness(50%);
+    cursor: pointer;
+  }
+}
+
+// Select
+
+select.cb-input {
+  padding-top: 0;
+  padding-bottom: 0;
+  border: 1px solid #ebedf0;
+  margin: 0 !important;
+  cursor: pointer;
+  color: #656565;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23656565' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: calc(100% - 5px);
+
+  &:hover {
+    border-color: #55c1e6;
+  }
+
+  &:active {
+    border-color: #55c1e6;
+  }
+
+  &:focus {
+    border-color: #55c1e6;
+  }
+}
+
+/* Checkbox styles */
+
+label:has(.cb-input__checkmark):has(input[type="checkbox"]) {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-direction: row-reverse;
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+  width: fit-content !important;
+  border: none !important;
+  font-size: map-get($sizesInputs, "medium", "desk", "font") !important;
+
+  @media screen and (max-width: 767px) {
+    font-size: map-get($sizesInputs, "medium", "phone", "font") !important;
+  }
+
+  .cb-input__checkmark {
+    order: 1;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: currentcolor;
+    // mask-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbD0iIzAwMDAwMCI+PGcgaWQ9IlNWR1JlcG9fYmdDYXJyaWVyIiBzdHJva2Utd2lkdGg9IjAiPjwvZz48ZyBpZD0iU1ZHUmVwb190cmFjZXJDYXJyaWVyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvZz48ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+IDxnPiA8cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ij48L3BhdGg+IDxwYXRoIGQ9Ik00IDNoMTZhMSAxIDAgMCAxIDEgMXYxNmExIDEgMCAwIDEtMSAxSDRhMSAxIDAgMCAxLTEtMVY0YTEgMSAwIDAgMSAxLTF6Ij48L3BhdGg+IDwvZz4gPC9nPjwvc3ZnPg==");
+    mask-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Interface%20/%20Checkbox_Unchecked'%3E%3Cpath id='Vector' d='M4 7.2002V16.8002C4 17.9203 4 18.4801 4.21799 18.9079C4.40973 19.2842 4.71547 19.5905 5.0918 19.7822C5.5192 20 6.07899 20 7.19691 20H16.8031C17.921 20 18.48 20 18.9074 19.7822C19.2837 19.5905 19.5905 19.2842 19.7822 18.9079C20 18.4805 20 17.9215 20 16.8036V7.19691C20 6.07899 20 5.5192 19.7822 5.0918C19.5905 4.71547 19.2837 4.40973 18.9074 4.21799C18.4796 4 17.9203 4 16.8002 4H7.2002C6.08009 4 5.51962 4 5.0918 4.21799C4.71547 4.40973 4.40973 4.71547 4.21799 5.0918C4 5.51962 4 6.08009 4 7.2002Z' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E");
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    transition: all 0.2s ease-in-out;
+  }
+
+  input:checked ~ .cb-input__checkmark {
+    background: transparent;
+    border: none;
+    background-color: currentcolor;
+    mask-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbD0iIzAwMDAwMCI+PGcgaWQ9IlNWR1JlcG9fYmdDYXJyaWVyIiBzdHJva2Utd2lkdGg9IjAiPjwvZz48ZyBpZD0iU1ZHUmVwb190cmFjZXJDYXJyaWVyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvZz48ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+IDxnPiA8cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ij48L3BhdGg+IDxwYXRoIGQ9Ik00IDNoMTZhMSAxIDAgMCAxIDEgMXYxNmExIDEgMCAwIDEtMSAxSDRhMSAxIDAgMCAxLTEtMVY0YTEgMSAwIDAgMSAxLTF6bTcuMDAzIDEzbDcuMDctNy4wNzEtMS40MTQtMS40MTQtNS42NTYgNS42NTctMi44MjktMi44MjktMS40MTQgMS40MTRMMTEuMDAzIDE2eiI+PC9wYXRoPiA8L2c+IDwvZz48L3N2Zz4=");
+    mask-repeat: no-repeat;
+    mask-size: contain;
+  }
+
+  @media screen and (max-width: 767px) {
+    .cb-input__checkmark {
+      width: 20px;
+      height: 20px;
+    }
+
+    .cb-input__checkmark::after {
+      font-size: 22px;
+      top: 2px;
+      left: 7px;
+      height: 13px;
+      width: 6px;
+    }
+  }
+
+  input {
+    order: 2;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .cb-input__checkmark::after {
+      display: block;
+    }
+  }
+}
+
+// Textarea
+textarea.cb-input {
+  height: auto !important;
+  margin: 0 !important;
+  border: 1px solid #ebedf0;
+
+  &:hover {
+    border-color: #55c1e6;
+  }
+
+  &:active {
+    border-color: #55c1e6;
+  }
+
+  &:focus {
+    border-color: #55c1e6;
+  }
+}
+
+/* Customize the scrollbar */
+.cb-input-group__dropcontent::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cb-input-group__dropcontent::-webkit-scrollbar-track {
+  background: #ebedf0;
+}
+
+.cb-input-group__dropcontent::-webkit-scrollbar-thumb {
+  background-color: #cdcdcd;
+}
+
+input.cb-input--no-arrows[type="number"]::-webkit-inner-spin-button,
+input.cb-input--no-arrows[type="number"]::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}

@@ -44,7 +44,7 @@
 
   padding: $paddingX $paddingY;
 
-  @media screen and (max-width: $screen-breakpoint-phone) {
+  @media screen and (max-width: $cb-screen-breakpoint-phone) {
     height: map-get($sizesBtn, "medium", "phone", "height");
     font-size: map-get($sizesBtn, "medium", "phone", "font");
     border-width: map-get($sizesBtn, "medium", "phone", "border");
@@ -184,7 +184,7 @@
     border-radius: 50%;
     font-size: 12px;
 
-    @media screen and (max-width: $screen-breakpoint-phone) {
+    @media screen and (max-width: $cb-screen-breakpoint-phone) {
       width: 18px;
       height: 18px;
       font-size: 14px;
@@ -416,13 +416,13 @@
   */
 
   &--block-phone {
-    @media only screen and (max-width: $screen-breakpoint-phone) {
+    @media only screen and (max-width: $cb-screen-breakpoint-phone) {
       width: 100%;
     }
   }
 
   &--block-desk {
-    @media only screen and (min-width: $screen-breakpoint-phone) {
+    @media only screen and (min-width: $cb-screen-breakpoint-phone) {
       width: 100%;
     }
   }

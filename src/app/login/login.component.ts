@@ -37,7 +37,7 @@ export class LoginComponent {
   ngSubmit(event: Event): void {
     event.preventDefault();
 
-    if (this.enviando) { return; }
+    // if (this.enviando) { return; }
 
     this.message_error = null;
 
@@ -57,7 +57,6 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.enviando = true;
       if (this.authService.login(username, password, this.loginForm.get('rememberme')?.value)) {
-        // this.router.navigate(['/deposito']);
         this.router.navigate(['/core-bancario/retiro/consulta']);
       } else {
         this.message_error = 'Usuario y contraseña requerido';
@@ -74,6 +73,6 @@ export class LoginComponent {
   }
 
   get logo(): string {
-    return 'assets/logo2.webp';
+    return 'assets/logo.png';
   }
 }

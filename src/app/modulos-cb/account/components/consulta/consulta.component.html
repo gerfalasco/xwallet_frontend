@@ -1,0 +1,42 @@
+<!--  -->
+<!-- (ngSubmit)="onSubmit()" -->
+<form class="cb-main" [formGroup]="grupoAccount">
+    <header class="cb-header">
+        <h1 class="cb-header__title">Cuenta</h1>
+    </header>
+
+    <section class="cb-section cb-section--form cb-form" style="display: flex; flex-direction: column; row-gap: 8px">
+        <fieldset class="cb-form__section form-section">
+            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+
+                <div class="cb-form-field phy-form-field--inline">
+                    <label class="cb-form-field__label">Balance</label>
+                    <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="Balance" />
+                </div>
+
+            </div>
+
+            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+
+                <div class="cb-form-field phy-form-field--inline">
+                    <label class="cb-form-field__label">Tipo</label>
+                    <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="Type" />
+                </div>
+
+            </div>
+
+            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+
+                <div class="cb-form-field phy-form-field--inline">
+                    <label class="cb-form-field__label">Moneda</label>
+                    <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="Currency"
+                    thousandSeparator="."
+                    phyDigitOnly
+                    [numberOfDecimals]="0"
+                    [max]="9" />
+                </div>
+
+            </div>
+        </fieldset>
+    </section>
+</form>

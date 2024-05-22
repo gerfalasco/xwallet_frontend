@@ -1,0 +1,149 @@
+.cb-main-modal {
+  > * > .cb-main {
+    min-height: fit-content;
+    height: fit-content;
+
+    @function calculate-height($height) {
+      @return $height * 1px;
+    }
+
+    @function calculate-width($width) {
+      @return $width * 1px;
+    }
+
+    @for $i from 100 through 1500 {
+      &--height-#{$i} {
+        // TODO: usar min ??
+        min-height: calculate-height($i);
+        max-height: calculate-height($i);
+        height: calculate-height($i);
+      }
+    }
+
+    @for $i from 100 through 1500 {
+      &--width-#{$i} {
+        min-width: min(95vw, calculate-width($i));
+        max-width: min(95vw, calculate-width($i));
+        width: min(95vw, calculate-width($i));
+      }
+    }
+  }
+}
+
+.cb-main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.layout__content {
+  grid-row: 2 / 3;
+  overflow: auto;
+  background-color: white;
+
+  > * > .cb-main {
+    min-height: 100%;
+    height: 100%;
+  }
+
+  &:has(> * > .cb-main) {
+    @media (max-width: $cb-screen-breakpoint-phone) {
+      .cb-filter__main {
+        height: calc(100vh - 90px) !important;
+      }
+    }
+
+    &:has(.cb-header__subtitle) {
+      @media (max-width: $cb-screen-breakpoint-phone) {
+        .cb-filter__main {
+          height: calc(100vh - 112px) !important;
+        }
+      }
+
+      &:has(.cb-header__icono) {
+        @media (max-width: $cb-screen-breakpoint-phone) {
+          .cb-filter__main {
+            height: calc(100vh - 114px) !important;
+          }
+        }
+      }
+    }
+
+    &:has(.cb-header--fixed) {
+      margin-top: 42px; // TODO: sacar a una variable que se el alto del header main
+
+      &:has(.cb-header__subtitle) {
+        &:not(:has(.cb-header__subtitle--inline)) {
+          margin-top: calc(42px + 22.45px);
+
+          &:has(.cb-header__icono) {
+            margin-top: calc(42px + 24.45px);
+
+            @media (max-width: $cb-screen-breakpoint-phone) {
+              .cb-filter__main {
+                height: calc(100vh - 114px) !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &:has(.cb-footer--fixed) {
+      margin-bottom: 31px; // TODO: sacar a una variable que se el alto del footer main
+    }
+  }
+
+  &:has(> * > * > .cb-main) {
+    @media (max-width: $cb-screen-breakpoint-phone) {
+      .cb-filter__main {
+        height: calc(100vh - 90px) !important;
+      }
+    }
+
+    &:has(.cb-header__subtitle) {
+      @media (max-width: $cb-screen-breakpoint-phone) {
+        .cb-filter__main {
+          height: calc(100vh - 112px) !important;
+        }
+      }
+
+      &:has(.cb-header__icono) {
+        @media (max-width: $cb-screen-breakpoint-phone) {
+          .cb-filter__main {
+            height: calc(100vh - 114px) !important;
+          }
+        }
+      }
+    }
+
+    &:has(.cb-header--fixed) {
+      margin-top: 42px; // TODO: sacar a una variable que se el alto del header main
+
+      &:has(.cb-header__subtitle) {
+        &:not(:has(.cb-header__subtitle--inline)) {
+          margin-top: calc(42px + 22.45px);
+        }
+
+        &:has(.cb-header__icono) {
+          margin-top: calc(42px + 24.45px);
+
+          @media (max-width: $cb-screen-breakpoint-phone) {
+            .cb-filter__main {
+              height: calc(100vh - 114px) !important;
+            }
+          }
+        }
+      }
+    }
+
+    &:has(.cb-footer--fixed) {
+      padding-bottom: 31px; // TODO: sacar a una variable que se el alto del footer main
+    }
+  }
+}

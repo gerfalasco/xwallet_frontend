@@ -1,0 +1,58 @@
+<!--  -->
+<!-- (ngSubmit)="onSubmit()" -->
+<form class="cb-main" [formGroup]="grupoCustomer">
+    <header class="cb-header">
+        <h1 class="cb-header__title">Datos Personales</h1>
+    </header>
+
+    <section class="cb-section cb-section--form cb-form" style="display: flex; flex-direction: column; row-gap: 8px">
+        <fieldset class="cb-form__section form-section">
+            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+
+                <div class="cb-form-field phy-form-field--inline">
+                    <label class="cb-form-field__label">Nombre</label>
+                    <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="Name" />
+                </div>
+
+            </div>
+
+            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+
+                <div class="cb-form-field phy-form-field--inline">
+                    <label class="cb-form-field__label">Teléfono</label>
+                    <input type="text" class="cb-form-field__input cb-input cb-input--small" 
+                    formControlName="Phone" />
+                </div>
+
+            </div>
+
+            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+
+                <div class="cb-form-field phy-form-field--inline">
+                    <label class="cb-form-field__label">Mail</label>
+                    <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="Email" />
+                </div>
+
+            </div>
+
+            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+
+                <div class="cb-form-field phy-form-field--inline">
+                    <label class="cb-form-field__label">Dirección</label>
+                    <input type="text" class="cb-form-field__input cb-input cb-input--small"
+                        formControlName="Address" />
+                </div>
+
+            </div>
+
+            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+
+                <div class="cb-form-field phy-form-field--inline">
+                    <label class="cb-form-field__label">Ciudad</label>
+                    <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="City" />
+                </div>
+
+            </div>
+        </fieldset>
+    </section>
+</form>

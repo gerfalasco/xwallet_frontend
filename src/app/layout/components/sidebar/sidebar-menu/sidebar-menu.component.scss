@@ -8,10 +8,11 @@
   margin: 0;
   transition: width 0.3s;
   overflow: hidden; /* Ocultar el contenido que se sale del ancho */
+  z-index: 1000;
 }
 
 .sidebar--hidden {
-  width: 30px;
+  width: 48px;
 }
 
 .profile {

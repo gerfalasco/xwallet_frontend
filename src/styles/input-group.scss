@@ -1,0 +1,312 @@
+@import './variables';
+
+/////////////////////////////
+/// GROUPS //////////////////
+/////////////////////////////
+
+@mixin input-group-small {
+  .cb-input {
+    @include input-small;
+
+    border: 1px solid #ebedf0;
+  }
+
+  .cb-btn {
+    @include input-small;
+  }
+
+  .cb-input-group__text {
+    height: map-get($sizesInputs, 'small', 'desk', 'height');
+    font-size: map-get($sizesInputs, 'small', 'desk', 'font');
+    border-width: map-get($sizesInputs, 'small', 'desk', 'border');
+
+    $paddingY: map-get($sizesInputs, 'small', 'desk', 'padding-y');
+
+    padding: 2px $paddingY;
+    width: 100%;
+    border: 1px solid #ebedf0;
+    margin: 0 !important;
+    background-color: transparent;
+
+    @media screen and (max-width: $cb-screen-breakpoint-phone) {
+      height: map-get($sizesInputs, 'small', 'phone', 'height');
+      font-size: map-get($sizesInputs, 'small', 'phone', 'font');
+      border-width: map-get($sizesInputs, 'small', 'phone', 'border');
+
+      $paddingX: map-get($sizesInputs, 'small', 'phone', 'padding-x');
+      $paddingY: map-get($sizesInputs, 'small', 'phone', 'padding-y');
+
+      padding: $paddingX $paddingY;
+    }
+  }
+}
+
+@mixin input-group-large {
+  .cb-input {
+    @include input-large;
+
+    border: 1px solid #ebedf0;
+  }
+
+  .cb-btn {
+    @include input-large;
+  }
+
+  .cb-input-group__text {
+    height: map-get($sizesInputs, 'large', 'desk', 'height');
+    font-size: map-get($sizesInputs, 'large', 'desk', 'font');
+    border-width: map-get($sizesInputs, 'large', 'desk', 'border');
+
+    $paddingY: map-get($sizesInputs, 'large', 'desk', 'padding-y');
+
+    padding: 2px $paddingY;
+    width: 100%;
+    border: 1px solid #ebedf0;
+    margin: 0 !important;
+    background-color: transparent;
+    white-space: nowrap;
+
+    @media screen and (max-width: $cb-screen-breakpoint-phone) {
+      height: map-get($sizesInputs, 'large', 'phone', 'height');
+      font-size: map-get($sizesInputs, 'large', 'phone', 'font');
+      border-width: map-get($sizesInputs, 'large', 'phone', 'border');
+
+      $paddingX: map-get($sizesInputs, 'large', 'phone', 'padding-x');
+      $paddingY: map-get($sizesInputs, 'large', 'phone', 'padding-y');
+
+      padding: $paddingX $paddingY;
+    }
+  }
+}
+
+.cb-form,
+.cb-form-field,
+.cb-input {
+  &--small {
+    .cb-input-group {
+      @include input-group-small;
+    }
+
+    .cb-btn {
+      @include botonSmall;
+    }
+
+    .cb-input {
+      @include input-small;
+    }
+  }
+
+  &--large {
+    .cb-input-group {
+      @include input-group-large;
+    }
+
+    .cb-btn {
+      @include botonLarge;
+    }
+
+    .cb-input {
+      @include input-large;
+    }
+  }
+}
+
+// Input con iconos
+.cb-input-group {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  width: 100%;
+  position: relative;
+  border: 1px solid #ebedf0;
+
+  &:hover {
+    border: 1px solid #55c1e6;
+  }
+
+  &:active {
+    border: 1px solid #55c1e6;
+  }
+
+  &:focus {
+    border: 1px solid #55c1e6;
+  }
+
+  *:has(+ *):not(:has(+ .cb-input-group__dropcontent)) {
+    border-right: none !important;
+  }
+
+  &__input.cb-input {
+    width: 100%;
+    border: none !important;
+
+    &:has(+ .cb-btn) {
+      border-right: none !important;
+    }
+
+    &:has(+ .cb-input) {
+      border-right: none !important;
+    }
+
+    &:has(+ .cb-input-group__text) {
+      border-right: none !important;
+    }
+  }
+
+  .cb-input-group__icon + .cb-input-group__input {
+    border-left: none;
+  }
+
+  &__text {
+    height: map-get($sizesInputs, 'medium', 'desk', 'height');
+    font-size: map-get($sizesInputs, 'medium', 'desk', 'font');
+    border-width: map-get($sizesInputs, 'medium', 'desk', 'border');
+
+    $paddingY: map-get($sizesInputs, 'medium', 'desk', 'padding-y');
+
+    padding: 2px $paddingY;
+    width: 100%;
+    margin: 0 !important;
+    background-color: transparent;
+
+    @media screen and (max-width: $cb-screen-breakpoint-phone) {
+      height: map-get($sizesInputs, 'medium', 'phone', 'height');
+      font-size: map-get($sizesInputs, 'medium', 'phone', 'font');
+      border-width: map-get($sizesInputs, 'medium', 'phone', 'border');
+
+      $paddingX: map-get($sizesInputs, 'medium', 'phone', 'padding-x');
+      $paddingY: map-get($sizesInputs, 'medium', 'phone', 'padding-y');
+
+      padding: $paddingX $paddingY;
+    }
+
+    &:has(+ .cb-btn) {
+      border-right: none !important;
+    }
+
+    &:has(+ .cb-input) {
+      border-right: none !important;
+    }
+
+    &:has(+ .cb-input-group__text) {
+      border-right: none !important;
+    }
+  }
+
+  .cb-input-group__icon + .cb-input-group__text {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  &__dropcontent {
+    background-color: #fff;
+    overflow: auto;
+    width: 100%;
+    max-height: 130px;
+    position: absolute;
+    z-index: 9999;
+    top: 100%;
+    left: 0;
+    border: 1px solid #ebedf0;
+    padding: 4px 11px;
+    margin-top: 4px;
+    transition: all 150ms ease-out;
+
+    &--list {
+      padding: 0;
+
+      li {
+        padding: 4px 11px;
+
+        &:hover {
+          background-color: #ebedf0;
+        }
+      }
+    }
+  }
+
+  &--small {
+    @include input-group-small;
+  }
+
+  &--large {
+    @include input-group-large();
+  }
+
+  .cb-input-group__btn {
+    @include inputButton();
+
+    &:has(+ *):not(:has(+ .cb-input-group__dropcontent)) {
+      border-right: 0 !important;
+    }
+  }
+
+  .cb-input-group__icon {
+    @include inputButtonOnlyIcon();
+
+    width: 31px;
+    height: 16px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ebedf0;
+    background-color: transparent !important;
+    color: #9d9d9d !important;
+
+    &:hover {
+      background-color: transparent !important;
+      color: #9d9d9d !important;
+      border-color: #ebedf0;
+    }
+
+    &:active {
+      border-color: #55c1e6;
+    }
+
+    &:focus {
+      border-color: #55c1e6;
+    }
+
+    &:has(+ .cb-input-group__icon) {
+      padding-right: 0 !important;
+    }
+  }
+
+  .cb-input-group__input + .cb-input-group__icon {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+
+  .cb-input-group__text + .cb-input-group__icon {
+    border-left: none !important;
+  }
+
+  .cb-input-group__icon + .cb-input-group__icon {
+    border-left: 0;
+  }
+
+  // badge
+  &:has(.cb-badge) {
+    .cb-input-group__text {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      .cb-badge {
+        background-color: $cb-color-gray;
+        color: $cb-color-white;
+        border-radius: 2px;
+        padding: 0 6px;
+        font-size: 0.8em;
+      }
+    }
+  }
+
+  &--clickeable {
+    .cb-input-group__icon,
+    .cb-input-group__text {
+      //transition: background-color 150ms linear;
+      cursor: pointer !important;
+    }
+  }
+}
