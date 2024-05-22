@@ -6,6 +6,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { CustomerService } from '@cb/core/services/customer.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountService } from '@cb/core/services/accounts.service';
+import { CbDropdownModule } from 'src/app/shared/components/cb-dropdown/cb-dropdown.module';
+import { IngresoModificacionComponent } from './views/ingreso-modificacion/ingreso-modificacion.component';
+import { ModalService } from 'src/app/shared/services/modal.service';
 
 const ROUTES: Routes = [
   {
@@ -16,7 +19,8 @@ const ROUTES: Routes = [
 
 @NgModule({
   declarations: [
-    ConsultaComponent
+    ConsultaComponent,
+    IngresoModificacionComponent
   ],
   imports: [
     CommonModule,
@@ -25,6 +29,7 @@ const ROUTES: Routes = [
     CommonModule, 
     HttpClientModule,
     RouterModule.forChild(ROUTES),
+    CbDropdownModule,
   ],
   exports: [
     ConsultaComponent
@@ -32,6 +37,7 @@ const ROUTES: Routes = [
   providers: [
     AccountService,
     CustomerService,
+    ModalService
   ]
 })
 export class DatosPersonalesModule { }

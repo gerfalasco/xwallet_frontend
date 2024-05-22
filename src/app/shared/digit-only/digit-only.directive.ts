@@ -4,7 +4,7 @@ import { limitNumber } from "./comun/limit-number.function";
 import { maxMinNumber } from "./comun/max-min-number.function";
 
 @Directive({
-  selector: "[phyDigitOnly]",
+  selector: "[cbDigitOnly]",
 })
 export class DigitOnlyDirective implements OnChanges {
   private _hasDecimalPoint = false;

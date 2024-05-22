@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from './layout';
 import { ModulosCbModule } from './modulos-cb';
 import { LayoutComponent } from '@layout/components/layout.component';
+import { SettingsService } from './services/settings.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -25,11 +27,16 @@ const ROUTES: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
-    ReactiveFormsModule,
-    // LayoutComponent,
-    // LayoutModule,
+    ReactiveFormsModule,    
+    HttpClientModule,
   ],
-  providers: [AuthService, AuthGuard], // Agrega AuthGuard como un proveedor
+  providers: [AuthService, AuthGuard, SettingsService], // Agrega AuthGuard como un proveedor
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule  {
+  constructor(
+    private settings: SettingsService,
+  ) {
+    this.settings.get();
+  }
+}
