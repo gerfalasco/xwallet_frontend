@@ -38,7 +38,7 @@ $color-titulo: #565656;
   min-width: 200px;
   min-height: 200px;
   display: initial;
-  border-top: math.div($altura, 2) solid #0f8cb7;
+  border-top: math.div($altura, 2) solid #008859b8;
 
   &::-webkit-scrollbar {
     width: 6px;

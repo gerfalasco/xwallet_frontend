@@ -12,7 +12,7 @@ export class CustomerService {
   ) { }
 
   getApi(){    
-    const url = this.settingsService.api + "api/v1/customers/test";
+    const url = this.settingsService.api + "api/v1/customers";
     const headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
     });
@@ -20,7 +20,11 @@ export class CustomerService {
   }
 
   getCustomer() {
-    const url = "assets/server/customer.json"; 
+    // const url = "assets/server/customer.json"; 
+    const url = this.settingsService.api + "api/v1/customers";
+    const headers = new HttpHeaders({
+      'Content-Type': 'text/plain; charset=utf-8'
+    });
     return this.httpClient.get<ICustomer>(url);
   }
 }

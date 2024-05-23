@@ -1,66 +1,20 @@
-<!--  -->
-<!-- (ngSubmit)="onSubmit()" -->
-<!-- <form class="cb-main" [formGroup]="grupoCustomer">
-    <header class="cb-header">
-        <h1 class="cb-header__title">Datos Personales</h1>
-    </header>
-
-    <section class="cb-section cb-section--form cb-form" style="display: flex; flex-direction: column; row-gap: 8px">
-        <fieldset class="cb-form__section form-section">
-            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
-
-                <div class="cb-form-field cb-form-field--inline">
-                    <label class="cb-form-field__label">Nombre</label>
-                    <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="Name" />
-                </div>
-
-            </div>
-
-            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
-
-                <div class="cb-form-field cb-form-field--inline">
-                    <label class="cb-form-field__label">Teléfono</label>
-                    <input type="text" class="cb-form-field__input cb-input cb-input--small" 
-                    formControlName="Phone" />
-                </div>
-
-            </div>
-
-            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
-
-                <div class="cb-form-field cb-form-field--inline">
-                    <label class="cb-form-field__label">Mail</label>
-                    <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="Email" />
-                </div>
-
-            </div>
-
-            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
-
-                <div class="cb-form-field cb-form-field--inline">
-                    <label class="cb-form-field__label">Dirección</label>
-                    <input type="text" class="cb-form-field__input cb-input cb-input--small"
-                        formControlName="Address" />
-                </div>
-
-            </div>
-
-            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
-
-                <div class="cb-form-field cb-form-field--inline">
-                    <label class="cb-form-field__label">Ciudad</label>
-                    <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="City" />
-                </div>
-
-            </div>
-        </fieldset>
-    </section>
-</form> -->
-
 <form class="cb-main">
     <div class="body-elements-container">
-        <header class="cb-header">
+        <header class="cb-header" style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      ">
             <h1 class="cb-header__title">Datos Personales</h1>
+            <div style="display: flex; gap: 5px">
+                <button class="btn cb-btn cb-btn--only-icon" style="color: white" (click)="altaCustomer()" style="                    
+                    color: #9d9d9d;
+                    background-color: transparent;
+                ">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+
         </header>
     </div>
 
@@ -112,7 +66,7 @@
                                     <p class="cb-menu__title">Ver</p>
                                 </li>
 
-                                <li class="cb-menu__option">
+                                <li class="cb-menu__option" (click)="editarCustomer(customer)">
                                     <span class="cb-menu__icon cb-icon cb-icon--edit"></span>
                                     <p class="cb-menu__title">Editar</p>
                                 </li>
@@ -126,23 +80,23 @@
                     </td>
 
                     <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        {{ customer.Name }}
+                        {{ customer.customerName }}
                     </td>
 
                     <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        {{ customer.City }}
+                        {{ customer.customerCity }}
                     </td>
 
                     <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        {{ customer.Address }}
+                        {{ customer.customerAddress }}
                     </td>
 
                     <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        {{ customer.Email }}
+                        {{ customer.customerEmail }}
                     </td>
 
                     <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        {{ customer.Phone }}
+                        {{ customer.customerPhone }}
                     </td>
         </table>
     </section>

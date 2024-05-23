@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { ICustomer } from '@cb/core/interfaces/customer.interface';
 import { CustomerService } from '@cb/core/services/customer.service';
 import { IngresoModificacionComponent } from '@cb/datos-personales/views/ingreso-modificacion/ingreso-modificacion.component';
@@ -12,51 +11,37 @@ import { ModalService } from 'src/app/shared/services/modal.service';
 
 })
 export class ConsultaComponent implements OnInit {
-  customer: ICustomer = {} as ICustomer;
   customers: ICustomer[] = [{
-    Id: 1,
-    Name: 'Juan mario lopez',
-    Address: 'Calle falsa 123',
-    City: 'Lima',
-    Email: 'fdfs@fgfdf.as',
-    Phone: '123456789'
+    customerId: 1,
+    customerName: 'Juan mario lopez',
+    customerAddress: 'Calle falsa 123',
+    customerCity: 'Lima',
+    customerEmail: 'fdfs@fgfdf.as',
+    customerPhone: '123456789'
   },
   {
-    Id: 2,
-    Name: 'Pedro',
-    Address: 'Calle 2',
-    City: 'Lima',
-    Email: '',
-    Phone: ''
+    customerId: 2,
+    customerName: 'Pedro',
+    customerAddress: 'Calle 2',
+    customerCity: 'Lima',
+    customerEmail: '',
+    customerPhone: ''
   }];
-  grupoCustomer: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    private modalService: ModalService,    
     private customerService: CustomerService,
-    private modalService: ModalService
   ) {
-    this.grupoCustomer = this.fb.group({
-      Id: [''],
-      Name: [''],
-      Address: [''],
-      City: [''],
-      Email: [''],
-      Phone: ['']
-    });
 
     // this.grupoCustomer.disable();
   }
 
   ngOnInit(): void {
-    // this.customerService.getApi().subscribe((data: string) => {
-    //   console.log(data);
-    // });
-
-    this.customerService.getCustomer().subscribe((customer: ICustomer) => {
-      this.customer = customer;
-      this.grupoCustomer.patchValue(this.customer);
+    this.customerService.getCustomer().subscribe((data: any) => {
+      console.log(data);
     });
+
+   
   }
 
   verCustomer(customer: ICustomer): void {
@@ -65,6 +50,25 @@ export class ConsultaComponent implements OnInit {
     });
 
     ref.instancia.customer = customer;
+    ref.instancia.titulo = 'Detalle: ' + customer.customerName;
   }
 
+  editarCustomer(customer: ICustomer): void {
+    const ref = this.modalService.abrir(IngresoModificacionComponent, {
+      cerrarConClickFueraDelModal: false,
+    });
+
+    ref.instancia.customer = customer;
+    ref.instancia.estado = 1;
+    ref.instancia.titulo = 'Modificación: ' + customer.customerName;
+  }
+
+  altaCustomer(): void {
+    const ref = this.modalService.abrir(IngresoModificacionComponent, {
+      cerrarConClickFueraDelModal: false,
+    });
+
+    ref.instancia.estado = 0;
+    ref.instancia.titulo = 'Alta';
+  }
 }

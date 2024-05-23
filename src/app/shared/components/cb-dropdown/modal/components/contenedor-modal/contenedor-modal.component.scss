@@ -1,7 +1,5 @@
 @use 'sass:math';
 
-@import 'core/colores';
-
 $altura: 15px;
 $tamanio-titulo: 24px;
 $tamanio-subtitulo: 18px;
@@ -40,7 +38,7 @@ $color-titulo: #565656;
   min-width: 200px;
   min-height: 200px;
   display: initial;
-  border-top: math.div($altura, 2) solid $color-informacion;
+  border-top: math.div($altura, 2) solid #008859b8;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -54,7 +52,7 @@ $color-titulo: #565656;
   &::-webkit-scrollbar-thumb {
     border-radius: 6px;
     width: 14px;
-    background-color: $color-liviano-default;
+    background-color: #808080;
   }
 
   .contenedor {
