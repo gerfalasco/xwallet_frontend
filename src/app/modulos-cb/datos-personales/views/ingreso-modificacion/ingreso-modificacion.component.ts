@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ICustomer } from '@cb/core/interfaces/customer.interface';
 import { CustomerService } from '@cb/core/services/customer.service';
 import { ModalActivoRef } from 'src/app/shared/components/modal';
+import { IDialogConfig } from 'src/app/shared/dialogo/interfaces/dialog-config';
+import { DialogService } from 'src/app/shared/dialogo/services/dialog-service.service';
 
 /**
  * Estados posibles de la pantalla:
@@ -28,8 +30,9 @@ export class IngresoModificacionComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private customerService: CustomerService,    
+    private customerService: CustomerService,
     private modalActivoRef: ModalActivoRef,
+    private dialogService: DialogService,
   ) {
     this.grupoCustomer = this.fb.group({
       customerId: [],
@@ -44,7 +47,7 @@ export class IngresoModificacionComponent implements OnInit {
   ngOnInit(): void {
     if (this.estado !== Estado.Alta) {
       this.cargarPantalla();
-      
+
       if (this.estado === Estado.Detalle) {
         this.grupoCustomer.disable();
       }
@@ -58,11 +61,63 @@ export class IngresoModificacionComponent implements OnInit {
 
   onSubmit(): void {
     if (this.grupoCustomer.valid) {
-      // const customer = this.grupoCustomer.value;
-      // this.customerService.saveCustomer(customer).subscribe((data: any) => {
-      //   console.log(data);
-      // });
+      this.customer = this.grupoCustomer.value;
+
+      if (this.estado === Estado.Alta) {
+        this.customerService.setCustomer({ customer: this.customer }).subscribe({
+          next: (customer: ICustomer) => {
+            console.log(customer);
+            this.closeForm();
+
+            const dialogConfig = {
+              title: 'Cliente creado',
+              message: 'El cliente se ha creado correctamente',
+              tipo: 'exito',
+              confirmText: 'Aceptar',
+              cancelText: undefined,
+            } as IDialogConfig;
+
+            this.dialogService.open(dialogConfig);
+          },
+          error: (error: any) => {
+            console.log(error);
+          }
+        });
+      }
+
+      else {
+        let dialogConfig = {
+          title: 'Modificar cliente',
+          message: '¿Está seguro que desea modificar el cliente seleccionado?'  ,
+          tipo: 'advertencia',
+          confirmText: 'Aceptar',
+          cancelText: 'Cancelar',
+        } as IDialogConfig;
+
+        this.dialogService.open(dialogConfig).then((aceptar: boolean) => {
+          this.customerService.updateCustomer({ customer: this.customer }).subscribe({
+            next: (customer: ICustomer) => {
+              console.log(customer);
+              this.closeForm();
+
+              dialogConfig = {
+                title: 'Cliente modificado',
+                message: 'El cliente se ha modificado correctamente',
+                tipo: 'exito',
+                confirmText: 'Aceptar',
+                cancelText: undefined,
+              } as IDialogConfig;
+
+              this.dialogService.open(dialogConfig);
+            },
+            error: (error: any) => {
+              console.log(error);
+            }
+          });
+        });
+      }
     }
+
   }
 
   cargarPantalla() {
@@ -71,7 +126,7 @@ export class IngresoModificacionComponent implements OnInit {
     }
   }
 
-  
+
   //Cierro el modal
   closeForm(): void {
     this.customer = null;

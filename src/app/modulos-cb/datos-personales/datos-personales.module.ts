@@ -9,6 +9,9 @@ import { AccountService } from '@cb/core/services/accounts.service';
 import { CbDropdownModule } from 'src/app/shared/components/cb-dropdown/cb-dropdown.module';
 import { IngresoModificacionComponent } from './views/ingreso-modificacion/ingreso-modificacion.component';
 import { ModalService } from 'src/app/shared/services/modal.service';
+import { DialogComponent } from 'src/app/shared/dialogo/components/dialog/dialog.component';
+import { DialogService } from 'src/app/shared/dialogo/services/dialog-service.service';
+import { DialogoModule } from 'src/app/shared/dialogo';
 
 const ROUTES: Routes = [
   {
@@ -30,6 +33,7 @@ const ROUTES: Routes = [
     HttpClientModule,
     RouterModule.forChild(ROUTES),
     CbDropdownModule,
+    DialogoModule,
   ],
   exports: [
     ConsultaComponent
@@ -37,7 +41,8 @@ const ROUTES: Routes = [
   providers: [
     AccountService,
     CustomerService,
-    ModalService
+    ModalService,
+    DialogService,
   ]
 })
 export class DatosPersonalesModule { }

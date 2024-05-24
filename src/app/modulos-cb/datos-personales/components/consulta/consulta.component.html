@@ -37,13 +37,6 @@
               class="cbx-icon"
             ></i> -->
                     </th>
-                    <th class="cb-table__th">
-                        Ciudad
-                    </th>
-
-                    <th class="cb-table__th">
-                        Dirección
-                    </th>
 
                     <th class="cb-table__th">
                         Mail
@@ -51,6 +44,13 @@
 
                     <th class="cb-table__th">
                         Teléfono
+                    </th>
+                    <th class="cb-table__th">
+                        Ciudad
+                    </th>
+
+                    <th class="cb-table__th">
+                        Dirección
                     </th>
                 </tr>
             </thead>
@@ -71,7 +71,7 @@
                                     <p class="cb-menu__title">Editar</p>
                                 </li>
 
-                                <li class="cb-menu__option">
+                                <li class="cb-menu__option" (click)="eliminarCustomer(customer)">
                                     <span class="cb-menu__icon cb-icon cb-icon--delete"></span>
                                     <p class="cb-menu__title">Eliminar</p>
                                 </li>
@@ -84,19 +84,19 @@
                     </td>
 
                     <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        {{ customer.customerCity }}
-                    </td>
-
-                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        {{ customer.customerAddress }}
-                    </td>
-
-                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
                         {{ customer.customerEmail }}
                     </td>
 
                     <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
                         {{ customer.customerPhone }}
+                    </td>
+
+                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
+                        {{ customer.customerCity }}
+                    </td>
+
+                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
+                        {{ customer.customerAddress }}
                     </td>
         </table>
     </section>

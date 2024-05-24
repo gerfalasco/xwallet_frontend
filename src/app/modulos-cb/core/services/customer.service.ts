@@ -11,20 +11,48 @@ export class CustomerService {
     private readonly settingsService: SettingsService
   ) { }
 
-  getApi(){    
-    const url = this.settingsService.api + "api/v1/customers";
-    const headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
-    return this.httpClient.get<any>(url, { headers: headers, responseType: 'text' as 'json'});
+  getCustomers() {
+    const url = `${this.settingsService.api}api/v1/customers`;
+    return this.httpClient.get<ICustomer[]>(url);
   }
 
-  getCustomer() {
-    // const url = "assets/server/customer.json"; 
-    const url = this.settingsService.api + "api/v1/customers";
-    const headers = new HttpHeaders({
-      'Content-Type': 'text/plain; charset=utf-8'
-    });
+  getCustomer({ customerId }: { customerId: number }) {
+    const url = `${this.settingsService.api}api/v1/customers/${customerId}`;
     return this.httpClient.get<ICustomer>(url);
+  }
+
+  setCustomer({ customer }: { customer: ICustomer | null }) {
+    if (customer) {
+      const url = `${this.settingsService.api}api/v1/customers`;
+      return this.httpClient.post<ICustomer>(url, customer);
+    }
+
+    else {
+      const errorResponse = {
+        titulo: "Error Customer",
+        message: "Customer debe tener un valor."
+      };
+      throw new Error(JSON.stringify(errorResponse));
+    }
+  }
+
+  deleteCustomer({ customerId }: { customerId: number }) {
+    const url = `${this.settingsService.api}api/v1/customers/${customerId}`;
+    return this.httpClient.delete(url);
+  }
+
+  updateCustomer({ customer }: { customer: ICustomer | null }) {
+    if (customer) {
+      const url = `${this.settingsService.api}api/v1/customers/${customer.customerId}`;
+      return this.httpClient.put<ICustomer>(url, customer);
+    }
+
+    else {
+      const errorResponse = {
+        titulo: "Error Customer",
+        message: "Customer debe tener un valor."
+      };
+      throw new Error(JSON.stringify(errorResponse));
+    }
   }
 }

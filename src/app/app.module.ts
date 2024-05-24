@@ -7,9 +7,6 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LayoutModule } from './layout';
-import { ModulosCbModule } from './modulos-cb';
-import { LayoutComponent } from '@layout/components/layout.component';
 import { SettingsService } from './services/settings.service';
 import { HttpClientModule } from '@angular/common/http';
 
