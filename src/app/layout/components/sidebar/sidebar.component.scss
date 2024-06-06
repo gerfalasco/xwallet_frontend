@@ -1,0 +1,19 @@
+// Sidebar wraper
+
+.sidebar__wraper {
+  z-index: 9999;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  height: calc(100% - 21px);
+
+  &.open {
+    animation: abrirMenu 0.3s ease alternate;
+  }
+
+  &.close {
+    animation: cerrarMenu 0.3s ease alternate;
+    transform: translateX(-340px);
+  }
+}

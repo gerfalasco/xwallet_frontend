@@ -1,0 +1,89 @@
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  background-image: linear-gradient(
+    158deg,
+    #5d44a6 9.46%,
+    #5d4ebf 36.13%,
+    #9b91d9 80%
+  );
+  color: white;
+  height: 40px;
+}
+
+.header__icono {
+  aspect-ratio: 3 / 1;
+  min-height: 2em;
+}
+
+.header__title {
+  font-size: 20px;
+}
+
+.header__toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.usuario {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.usuario__icono {
+  margin-right: 10px;
+}
+
+.usuario__nombre {
+  display: flex;
+  flex-direction: column;
+  margin-right: 4px;
+}
+
+.usuario__nombre h5 {
+  margin: 0;
+}
+
+.usuario__nombre p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.icon {
+  font-size: 24px;
+}
+
+.icon--user::before {
+  content: "\e900"; /* Código de icono de usuario, reemplazar por el correcto */
+}
+
+@media (max-width: 768px) {
+  .header__toolbar {
+    justify-content: center; /* Centra los elementos en pantallas pequeñas */
+  }
+
+  .usuario {
+    margin-left: 0; /* Elimina el margen izquierdo en pantallas pequeñas */
+    margin-top: 10px; /* Añade un margen superior en pantallas pequeñas */
+  }
+}
+
+.header__logo {
+  grid-column: 1; /* Coloca el logo en la primera columna del grid */
+  justify-self: center; /* Centra horizontalmente el logo */
+  margin-right: 20px; /* Agrega un margen a la derecha del logo */
+  transform: scale(1.5); /* Escala el tamaño del logo */
+}
+
+.hamburger-icon {
+  display: block;
+  cursor: pointer;
+}
+
+.title {
+  vertical-align: middle;
+  font-weight: bold;
+}

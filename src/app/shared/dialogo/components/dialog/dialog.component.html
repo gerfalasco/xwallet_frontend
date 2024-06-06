@@ -1,0 +1,21 @@
+<div class="dialog">
+  <header [ngClass]="[config.tipo]">
+    <h2> <i *ngIf="icono" class="icono" [ngClass]="[icono, config.tipo]"></i>
+      {{ config.title }}
+    </h2>
+  </header>
+
+  <div class="body">
+    <p>{{ config.message }}</p>
+    <div _ngcontent-wss-c74="" class="cb-toolbar__content-fixed">
+      <li _ngcontent-wss-c74="" class="cb-toolbar__option">
+        <button *ngIf="config.cancelText" (click)="onCancel()" class="btn cb-btn cb-btn--secondary">{{ config.cancelText || 'Cancel' }}</button>
+      </li>
+  
+      <li _ngcontent-wss-c74="" class="cb-toolbar__option">
+        <button (click)="onConfirm()" x class="btn cb-btn cb-btn--secondary">{{ config.confirmText || 'Confirm'
+          }}</button>
+      </li>
+    </div>
+  </div>
+</div>

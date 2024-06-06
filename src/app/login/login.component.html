@@ -1,0 +1,64 @@
+<main class="authlayout-main" [style.background-image]="
+   'url(' + background + ')'
+ ">
+  <div class="authlayout-header">
+    <img [src]="logo" />
+  </div>
+
+  <div class="authlayout-content">
+
+
+    <form class="cb-form formulario" [formGroup]="loginForm" (ngSubmit)="ngSubmit($event)">
+
+      <!-- username-->
+      <div class="cb-form-group">
+        <!--  -->
+        <input class="cb-form-control" placeholder="Usuario" formControlName="username" autocapitalize="none" />
+        <i class="fa fa-fw fa-user cb-form-icon"></i>
+      </div>
+
+      <!-- password-->
+      <div class="cb-form-group no-margin">
+        <input [type]="show_password ? 'text' : 'password'" class="cb-form-control" formControlName="password"
+          placeholder="Contraseña" />
+        <i *ngIf="!show_password" (click)="show_password = true"
+          class="fa fa-fw fa-eye cb-form-icon cursor-pointer"></i>
+        <i *ngIf="show_password" (click)="show_password = false"
+          class="fa fa-fw fa-eye-slash cb-form-icon cursor-pointer"></i>
+      </div>
+
+      <div class="cbauth-row space-between row-form">
+        <!-- remember -->
+        <div class="cb-form-group no-margin">
+          <label class="cbauth-checkbox">
+            Recordarme
+            <input formControlName="rememberme" type="checkbox" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- submit-->
+      <div class="cb-form-group no-margin">
+        <button type="submit" class="cbauth-submit">
+          <em class="cbauth-icon fas fa-lock"></em>
+          INGRESAR
+        </button>
+      </div>
+
+      <!-- errors -->
+      <div class="cbauth-row center row-error">
+        <p *ngIf="message_error">{{ message_error }}</p>
+      </div>
+    </form>
+
+    <footer class="cbauth-row center row-registro">
+    </footer>
+  </div>
+
+  <div class="authlayout-footer">
+    <p class="legal">
+      CB es marca registrada de Core Bancario S.R.L.
+    </p>
+  </div>
+</main>

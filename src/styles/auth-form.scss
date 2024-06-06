@@ -1,0 +1,162 @@
+.cb-form {
+  .cb-form-group {
+    display: flex;
+    position: relative;
+    margin-bottom: 10px;
+
+    &.no-margin-bottom {
+      margin-bottom: 0;
+    }
+
+    .cb-form-control {
+      padding: 9px 5px;
+      width: 100%;
+      font-size: 15px !important;
+      box-shadow: none;
+      border: none;
+      border-radius: 0;
+      color: rgb(131 131 131) !important;
+      background-color: #fff !important;
+
+      ::placeholder {
+        color: rgb(148 148 148) !important;
+        font-size: 20px;
+        //font-weight: bold;
+        font-weight: 300;
+      }
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus {
+        -webkit-text-fill-color: rgb(131 131 131) !important;
+        background-color: #fff !important;
+      }
+    }
+
+    .cb-form-icon {
+      height: 70%;
+      position: absolute;
+      z-index: 1;
+      right: 0px;
+      top: 7%;
+      text-align: center;
+      padding-top: 7px;
+      padding-left: 14px;
+      padding-right: 7px;
+      font-size: 15px;
+      color: rgb(131 131 131);
+      border-left: 1px solid rgb(131 131 131);
+
+      &.fa-eye,
+      &.fa-eye-slash {
+        right: 2px !important;
+        padding-left: 12px !important;
+      }
+
+      &.cursor-pointer {
+        cursor: pointer;
+      }
+    }
+
+    .cbauth-checkbox {
+      display: block;
+      position: relative;
+      padding-left: 24px;      
+    padding-top: 2px;
+      cursor: pointer;
+      font-size: 12px;
+      user-select: none;
+      margin: 0;
+
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 15px;
+        width: 15px;
+        border: 1px solid #fff;
+        border-radius: 3px;
+        color: #2196f3;
+
+        &::after {
+          content: "";
+          position: absolute;
+          display: none;
+          left: 4px;
+          top: 0px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 3px 3px 0;
+          transform: rotate(45deg);
+        }
+      }
+
+      input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked ~ .checkmark {
+          &::after {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .cbauth-submit {
+      cursor: pointer;
+      display: inline-block;
+      font-size: 14px;
+      box-shadow: none;
+      outline: none;
+      border: 0;
+      color: #fff;
+      background-color: #28a7ba !important;
+      padding: 10px 0;
+      width: 100%;
+      transition: filter 0.3s ease-in-out;
+      font-weight: 400;
+      letter-spacing: 3px;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        filter: brightness(90%);
+      }
+
+      .cbauth-icon {
+        font-size: 13px;
+        margin-right: 5px;
+      }
+
+      .cbauth-spiner {
+        font-size: 13px;
+        margin-right: 5px;
+
+        .spinner-border {
+          display: inline-block;
+          height: 12px;
+          width: 12px;
+          vertical-align: text-bottom;
+          border: 12px solid currentColor;
+          border-right-color: transparent;
+          border-radius: 50%;
+          animation: spinner-border .75s linear infinite;
+        }
+      }
+    }
+  }
+
+  .message {
+    color: rgb(189 19 19);
+    font-size: 15px;
+    min-height: 23px;
+    margin-left: 10px;
+  }
+}

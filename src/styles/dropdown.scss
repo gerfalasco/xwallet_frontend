@@ -1,0 +1,57 @@
+@import "./variables";
+
+.cb-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  gap: 8px;
+
+  &__toogle {
+    &:focus + .cb-dropdown__content {
+      display: flex;
+    }
+  }
+
+  &__content {
+    display: none;
+    padding: 10px;
+    border: 1px solid #ddd;
+    list-style: none;
+    position: absolute;
+    top: 10px;
+    right: 8px;
+    background-color: #ebedf0;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
+    z-index: 999;
+
+    &:has(*:active) {
+      display: flex;
+    }
+
+    &--right {
+      order: 2;
+      display: none;
+      list-style: none;
+      margin: 0;
+      position: absolute;
+      top: 10px;
+      left: 8px;
+      right: auto;
+      background-color: #ebedf0;
+      border: 1px solid #ddd;
+      padding: 10px;
+      gap: 8px;
+      z-index: 9999;
+    }
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}

@@ -1,0 +1,45 @@
+.sidebar {
+  height: 100%; /* Resta la altura del header */
+  width: 20%;
+  position: fixed;
+  top: 40px; /* Alinea el sidebar debajo del header */
+  background-image: linear-gradient(158deg, #5d4ebf 10.46%, #9b91d9 93.13%, #B3ADD9 100%);
+  color: white;
+  margin: 0;
+  transition: width 0.3s;
+  overflow: hidden; /* Ocultar el contenido que se sale del ancho */
+  z-index: 1000;
+}
+
+.sidebar--hidden {
+  width: 48px;
+}
+
+.profile {
+  padding: 10px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.profile i {
+  margin-right: 10px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+  color: #fff;
+}

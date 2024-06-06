@@ -1,0 +1,133 @@
+@import "./variables";
+
+.cb-filter {
+  position: relative;
+  width: 100%;
+
+  &__summary {
+    cursor: auto;
+    display: flex;
+    justify-content: space-between;
+
+    &::marker {
+      display: none;
+      color: transparent;
+      content: "";
+    }
+
+    &--only-desk {
+      @media (max-width: $cb-screen-breakpoint-phone) {
+        display: none;
+      }
+    }
+
+    .summary__header {
+      &__title {
+        font-size: 16px;
+        color: $cb-color-gray;
+        margin: 0;
+        font-weight: bold;
+      }
+    }
+
+    .summary__content {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      column-gap: 22px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      &--right {
+        justify-content: right;
+      }
+
+      &__item {
+        color: $cb-color-grey-text;
+        margin: 0;
+        text-decoration: none;
+        display: flex;
+        gap: 4px;
+        flex-direction: row;
+        align-items: center;
+
+        strong {
+          margin-right: 4px;
+        }
+
+        .cb-btn--only-icon {
+          width: 14px;
+          height: 14px;
+          padding-top: 6px;
+
+          .cb-icon {
+            width: 100%;
+          }
+        }
+
+        &:hover {
+          .cb-btn--only-icon {
+            display: flex;
+          }
+        }
+      }
+
+      .cb-form {
+        padding: 0 !important;
+        padding-top: 8px;
+      }
+    }
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 0 8px 0 rgb(0 0 0 / 40%);
+    padding: 0;
+    height: auto !important;
+    min-height: auto !important;
+    z-index: 99;
+
+    @function calculate-width($width) {
+      @return $width * 1px;
+    }
+
+    @for $i from 100 through 1000 {
+      &--width-#{$i} {
+        width: calculate-width($i);
+      }
+    }
+
+    &--right {
+      left: auto;
+    }
+
+    &--left {
+      right: auto;
+    }
+  }
+
+  @media (max-width: $cb-screen-breakpoint-phone) {
+    padding: 6px 16px;
+
+    &__main {
+      width: auto !important;
+    }
+
+    .cb-header {
+      display: none;
+    }
+
+    .summary__content {
+      &__item {
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+<button
+  #boton
+  id="boton"
+  type="button"
+  (click)="toggleContent()"
+  class="cb-btn cb-btn--only-icon"
+  style="border: none; background-color: transparent; cursor: pointer;"
+>
+  <i class="cb-btn__icon cb-icon cb-icon--dropdown"></i>
+</button>
+
+<div #menu id="menu" [ngStyle]="{'visibility': showMenu ? 'visible' : 'hidden'}">
+  <ng-content></ng-content>
+</div>

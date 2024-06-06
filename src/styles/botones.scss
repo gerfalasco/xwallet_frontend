@@ -1,0 +1,512 @@
+@import "./variables";
+
+/*
+
+  BOTONES:
+  Estilos base para los botones
+
+  Bloque: btn
+
+  Elementos:
+    __icon
+
+  Modificadores:
+    Tipos:
+      --primary (default),
+      --secondary,
+      --success,
+      --danger,
+      --alert,
+      --transparent
+    Tamaños:
+      --medium (default),
+      --small,
+      --large
+    Bloque
+      --block,
+      --block-phone,
+      --block-desk
+
+*/
+
+@mixin tamanioDefault {
+  height: map-get($sizesBtn, "medium", "desk", "height");
+  font-size: map-get($sizesBtn, "medium", "desk", "font");
+  border: map-get($sizesBtn, "medium", "desk", "border") solid transparent;
+
+  $paddingX: map-get($sizesBtn, "medium", "desk", "padding-x");
+  $paddingY: map-get($sizesBtn, "medium", "desk", "padding-y");
+
+  &.btn--only-icon {
+    padding: 0;
+    height: map-get($sizesBtn, "medium", "desk", "height-only-icon");
+  }
+
+  padding: $paddingX $paddingY;
+
+  @media screen and (max-width: $cb-screen-breakpoint-phone) {
+    height: map-get($sizesBtn, "medium", "phone", "height");
+    font-size: map-get($sizesBtn, "medium", "phone", "font");
+    border-width: map-get($sizesBtn, "medium", "phone", "border");
+
+    $paddingX: map-get($sizesBtn, "medium", "phone", "padding-x");
+    $paddingY: map-get($sizesBtn, "medium", "phone", "padding-y");
+
+    &.btn--only-icon {
+      padding: 0;
+      height: map-get($sizesBtn, "medium", "phone", "height-only-icon");
+    }
+
+    padding: $paddingX $paddingY;
+  }
+}
+
+@mixin botonSmall {
+  height: map-get($sizesBtn, "small", "desk", "height");
+  font-size: map-get($sizesBtn, "small", "desk", "font");
+  border: map-get($sizesBtn, "small", "desk", "border") solid transparent;
+
+  $paddingX: map-get($sizesBtn, "small", "desk", "padding-x");
+  $paddingY: map-get($sizesBtn, "small", "desk", "padding-y");
+
+  &.btn--only-icon {
+    padding: 0;
+    height: map-get($sizesBtn, "small", "desk", "height-only-icon");
+  }
+
+  padding: $paddingX $paddingY;
+
+  @media screen and (max-width: 767px) {
+    height: map-get($sizesBtn, "small", "phone", "height");
+    font-size: map-get($sizesBtn, "small", "phone", "font");
+    border: map-get($sizesBtn, "small", "phone", "border") solid transparent;
+
+    $paddingX: map-get($sizesBtn, "small", "phone", "padding-x");
+    $paddingY: map-get($sizesBtn, "small", "phone", "padding-y");
+
+    &.btn--only-icon {
+      padding: 0;
+      height: map-get($sizesBtn, "small", "phone", "height-only-icon");
+    }
+
+    padding: $paddingX $paddingY;
+  }
+}
+
+@mixin botonLarge {
+  height: map-get($sizesBtn, "large", "desk", "height");
+  font-size: map-get($sizesBtn, "large", "desk", "font");
+  border: map-get($sizesBtn, "large", "desk", "border") solid transparent;
+
+  $paddingX: map-get($sizesBtn, "large", "desk", "padding-x");
+  $paddingY: map-get($sizesBtn, "large", "desk", "padding-y");
+
+  &.btn--only-icon {
+    padding: 0;
+    height: map-get($sizesBtn, "large", "desk", "height-only-icon");
+  }
+
+  padding: $paddingX $paddingY;
+
+  @media screen and (max-width: 767px) {
+    height: map-get($sizesBtn, "large", "phone", "height");
+    font-size: map-get($sizesBtn, "large", "phone", "font");
+    border: map-get($sizesBtn, "large", "phone", "border") solid transparent;
+
+    $paddingX: map-get($sizesBtn, "large", "phone", "padding-x");
+    $paddingY: map-get($sizesBtn, "large", "phone", "padding-y");
+
+    &.btn--only-icon {
+      padding: 0;
+      height: map-get($sizesBtn, "large", "phone", "height-only-icon");
+    }
+
+    padding: $paddingX $paddingY;
+  }
+}
+
+.btn {
+  @mixin colorDefault {
+    background-color: map-get($colores, "primary", "default");
+    color: #fff;
+
+    &:hover {
+      background-color: map-get($colores, "primary", "hover");
+    }
+
+    &:active {
+      background-color: map-get($colores, "primary", "active");
+      border-color: map-get($colores, "primary", "default");
+    }
+
+    &:disabled {
+      background-color: map-get($colores, "primary", "disabled");
+      color: #ffffff80;
+      border: none;
+    }
+  }
+
+  /* display */
+  display: flex;
+  gap: 6px;
+  flex-direction: row;
+  white-space: nowrap;
+  align-items: center;
+  position: relative;
+
+  /* tamaño */
+  width: fit-content;
+  box-sizing: border-box;
+
+  /* otros */
+  font-weight: 400;
+  border: 1px solid black;
+  text-decoration: none;
+  transition: background-color 150ms linear;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  // Badge
+
+  &__badge {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #dc3545;
+    left: -7px;
+    bottom: -5px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 12px;
+
+    @media screen and (max-width: $cb-screen-breakpoint-phone) {
+      width: 18px;
+      height: 18px;
+      font-size: 14px;
+    }
+  }
+
+  /*
+
+    ✏️ Modificadores de tipo
+    --primary (default)
+    --secondary
+    --success
+    --danger
+    --alert
+    --text
+
+  */
+
+  @include colorDefault;
+
+  // Primary (default)
+  &--primary {
+    @include colorDefault;
+  }
+
+  // Secondary
+  &--secondary {
+    background-color: transparent;
+    color: #656565;
+    border-color: #656565 !important;
+
+    &:hover {
+      background-color: transparent;
+      border-color: #656565cc;
+    }
+
+    &:active {
+      background-color: transparent;
+      border-color: #656565;
+    }
+
+    &:disabled {
+      background-color: transparent;
+      color: #656565cc;
+      border: 1px solid #656565cc;
+    }
+  }
+
+  // Success
+  &--success {
+    background-color: map-get($colores, "success", "default");
+    color: #fff;
+
+    &:hover {
+      background-color: map-get($colores, "success", "hover");
+    }
+
+    &:active {
+      background-color: map-get($colores, "success", "active");
+      border-color: map-get($colores, "success", "default");
+    }
+
+    &:disabled {
+      background-color: map-get($colores, "success", "disabled");
+      color: #ffffff80;
+    }
+  }
+
+  // Danger
+  &--danger {
+    background-color: map-get($colores, "danger", "default");
+    color: #fff;
+
+    &:hover {
+      background-color: map-get($colores, "danger", "hover");
+    }
+
+    &:active {
+      background-color: map-get($colores, "danger", "active");
+      border-color: map-get($colores, "danger", "default");
+    }
+
+    &:disabled {
+      background-color: map-get($colores, "danger", "disabled");
+      color: #ffffff80;
+    }
+  }
+
+  // Alert
+  &--alert {
+    background-color: map-get($colores, "alert", "default");
+    color: #fff;
+
+    &:hover {
+      background-color: map-get($colores, "alert", "hover");
+    }
+
+    &:active {
+      background-color: map-get($colores, "alert", "active");
+      border-color: map-get($colores, "alert", "default");
+    }
+
+    &:disabled {
+      background-color: map-get($colores, "alert", "disabled");
+      color: #ffffff80;
+    }
+  }
+
+  // OnlyIcon
+  &--only-icon {
+    background-color: transparent;
+    color: #656565;
+    padding: 0;
+    border: none;
+
+    &.btn--primary {
+      color: map-get($colores, "primary", "default");
+    }
+
+    &.btn--danger {
+      color: map-get($colores, "danger", "default");
+
+      &:hover {
+        color: map-get($colores, "danger", "hover");
+      }
+
+      &:active {
+        color: map-get($colores, "danger", "active");
+      }
+
+      &:disabled {
+        color: map-get($colores, "danger", "disabled");
+      }
+    }
+
+    &.btn--success {
+      color: map-get($colores, "success", "default");
+
+      &:hover {
+        color: map-get($colores, "success", "hover");
+      }
+
+      &:active {
+        color: map-get($colores, "success", "active");
+      }
+
+      &:disabled {
+        color: map-get($colores, "success", "disabled");
+      }
+    }
+
+    &.btn--alert {
+      color: map-get($colores, "alert", "default");
+
+      &:hover {
+        color: map-get($colores, "alert", "hover");
+      }
+
+      &:active {
+        color: map-get($colores, "alert", "active");
+      }
+
+      &:disabled {
+        color: map-get($colores, "alert", "disabled");
+      }
+    }
+
+    &:hover {
+      background-color: transparent;
+      color: #65656580;
+    }
+
+    &:active {
+      background-color: transparent;
+      color: #65656580;
+      border: none;
+      transform: scale(1.1);
+
+      .btn__tooltip {
+        transform: scale(0.9);
+      }
+    }
+
+    &:disabled {
+      background-color: transparent;
+      color: #656565cc;
+      border: none;
+    }
+  }
+
+  &--text {
+    background-color: transparent;
+    border: none;
+    color: #656565;
+
+    &:hover {
+      background-color: transparent;
+      color: #65656580;
+    }
+
+    &:active {
+      background-color: transparent;
+      color: #65656580;
+      border: none;
+    }
+  }
+
+  @include tamanioDefault;
+
+  &--small {
+    @include botonSmall;
+  }
+
+  &--medium {
+    @include tamanioDefault;
+  }
+
+  &--large {
+    @include botonLarge();
+  }
+
+  /*
+
+    🧱 Modificador block
+    --block
+    --block-desk
+    --block-phone
+
+  */
+
+  &--block-phone {
+    @media only screen and (max-width: $cb-screen-breakpoint-phone) {
+      width: 100%;
+    }
+  }
+
+  &--block-desk {
+    @media only screen and (min-width: $cb-screen-breakpoint-phone) {
+      width: 100%;
+    }
+  }
+
+  &--block {
+    width: 100%;
+  }
+
+  /*
+
+    📌 Elemento icon
+    __icon
+
+  */
+
+  &__icon {
+    display: block;
+    height: 100%;
+    color: currentcolor;
+
+    * {
+      display: block;
+      align-items: center;
+      aspect-ratio: 1/1;
+      width: auto;
+    }
+
+    svg {
+      fill: currentcolor;
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+
+    img {
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+  }
+}
+
+/*
+
+  🛠️ Utilidades para otros componentes
+
+*/
+
+@mixin onlyIconPrimary() {
+  color: map-get($colores, "primary", "default");
+
+  &:hover {
+    color: map-get($colores, "primary", "hover");
+  }
+
+  &:active {
+    color: map-get($colores, "primary", "active");
+  }
+
+  &:disabled {
+    color: map-get($colores, "primary", "disabled");
+  }
+}
+
+@mixin inputButton() {
+  background-color: transparent !important;
+  color: #656565 !important;
+  border: 1px solid #ebedf0 !important;
+  border-bottom: none !important;
+  border-top: none !important;
+
+  &:hover {
+    background-color: transparent !important;
+    color: #656565 !important;
+  }
+}
+
+@mixin inputButtonOnlyIcon() {
+  background-color: transparent;
+  color: #656565;
+  border-bottom: none !important;
+  border-top: none !important;
+
+  &:hover {
+    background-color: transparent;
+  }
+}

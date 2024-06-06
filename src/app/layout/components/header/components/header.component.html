@@ -1,0 +1,11 @@
+<!-- header-simple.component.html -->
+<div class="header">
+
+  <p class="header__title">
+    <i class="fas fa-bars hamburger-icon" *ngIf="windowSize <= 768" (click)="statusSidebar()"></i>
+    <span class="header__icono cb-icon cb-icon--empresa"></span>
+  </p>
+  <div class="header__toolbar">
+    <cb-header-menu style="margin-right: 10px;"></cb-header-menu>
+  </div>
+</div>

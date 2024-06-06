@@ -1,0 +1,16 @@
+<div class="overlay" (click)="clickFueraDelModal()">
+  <div
+    class="modal"
+    [ngStyle]="{
+      width: config?.ancho,
+      height: config?.alto
+    }"
+    cdkDrag
+    [cdkDragDisabled]="true"
+    (click)="clickEnElModal()"
+  >
+    <div style="height: 100%" class="contenedor cb-main-modal">
+      <ng-template cbHostModal> </ng-template>
+    </div>
+  </div>
+</div>

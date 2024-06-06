@@ -1,0 +1,36 @@
+.navbar {
+    display: flex;
+    justify-content: center; /* Opcional: para centrar los botones horizontalmente */
+  }
+  
+  .btn-list {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .btn-list li {
+    margin-right: 10px; /* Espacio entre los botones */
+  }
+  
+  .btn {
+    /* Tus estilos actuales para el botón */
+    display: flex;
+    gap: 6px;
+    flex-direction: row;
+    white-space: nowrap;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    font-weight: 400;
+    text-decoration: none;
+    transition: background-color 150ms linear;
+    height: 26px;
+    font-size: 16px;
+    border: 1px solid transparent;
+    padding: 4px 20px;
+  }  
+
+.text-white {
+  color: white !important;
+}
