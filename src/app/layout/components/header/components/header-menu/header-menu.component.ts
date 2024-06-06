@@ -1,5 +1,6 @@
 // header-menu.component.ts
 import { Component } from '@angular/core';
+import { DataService } from '@cb/core/services/data.service';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
@@ -9,9 +10,16 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class HeaderMenuComponent {
 
-  constructor(private authService: AuthService) { }
+  constructor(    
+    private authService: AuthService,
+    private dataService: DataService
+  ) { }
 
   cerrarSesion() {
     this.authService.logout();
+  }
+
+  clearClient(){
+    this.dataService.changeData(null);
   }
 }

@@ -1,8 +1,13 @@
 <div class="navbar">
-    <ul class="btn-list">
-      <li>
-        <button type="button" class="btn btn--danger" (click)="cerrarSesion()">Cerrar Sesión</button>
-      </li>
-    </ul>
-  </div>
-  
+  <ul class="btn-list">
+    <li>
+      <button type="button" class="btn btn--only-icon">
+        <i class="fas fa-search input-icon text-white" [routerLink]="['./cliente/consulta/']" (click)="clearClient()">
+        </i>
+      </button>
+    </li>
+    <li>
+      <button type="button" class="btn btn--danger" (click)="cerrarSesion()">Cerrar Sesión</button>
+    </li>
+  </ul>
+</div>

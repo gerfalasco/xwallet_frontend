@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { ICustomer } from '../interfaces/customer.interface';
+import { HttpClient } from "@angular/common/http";
 import { SettingsService } from 'src/app/services/settings.service';
+import { ICustomer } from '../interfaces/customer.interface';
 
 @Injectable()
 export class CustomerService {

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@layout/layout.module';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from '@layout/components/layout.component';
+import { DataService } from './core/services/data.service';
 
 const ROUTES: Routes = [
   {
@@ -13,6 +14,11 @@ const ROUTES: Routes = [
         path: "retiro",
         loadChildren: () =>
           import("@cb/retiro").then((m) => m.RetiroModule),
+      },
+      {
+        path: "cliente",
+        loadChildren: () =>
+          import("@cb/customer").then((m) => m.CustomerModule),
       },
       {
         path: "cuenta",
@@ -39,6 +45,7 @@ const ROUTES: Routes = [
     CommonModule,
     LayoutModule,
     RouterModule.forChild(ROUTES),
-  ]
+  ],
+  providers: [DataService],
 })
 export class ModulosCbModule { }

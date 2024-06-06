@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '@cb/core/services/data.service';
 
 @Component({
   selector: 'app-layout',
@@ -8,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class LayoutComponent implements OnInit {
   sidebarOpen: boolean = false;
   sidebarOpenMobile: boolean = false;
+  sidebarHide: boolean = false;
 
-  constructor() { }
+  constructor(
+    private dataService: DataService,
+  ) { }
 
   ngOnInit(): void {
+    this.sidebarHide = this.dataService.currentCustomer ? true : false;
+    console.log(this.sidebarHide);
   }
 
   toggleMenu() {

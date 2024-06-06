@@ -57,7 +57,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.enviando = true;
       if (this.authService.login(username, password, this.loginForm.get('rememberme')?.value)) {
-        this.router.navigate(['/core-bancario/retiro/consulta']);
+        this.router.navigate(['/core-bancario/cliente/consulta']);
       } else {
         this.message_error = 'Usuario y contraseña requerido';
       }

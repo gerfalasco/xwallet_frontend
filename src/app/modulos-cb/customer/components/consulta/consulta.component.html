@@ -1,0 +1,91 @@
+<div class="body-elements-container">
+  <header class="cb-header" style="display: flex; align-items: center; justify-content: space-between;">
+    <h1 class="cb-header__title">Cliente</h1>
+    <div style="display: flex; gap: 5px">
+      <button class="btn cb-btn cb-btn--only-icon" style="color: white" (click)="altaCustomer()"
+        style="color: #9d9d9d; background-color: transparent;">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  </header>
+</div>
+
+<section class="cb-section cb-section--table">
+  <div class="cb-input-group cb-input-group--large">
+    <input class="cb-input-group__input cb-input" type="text" placeholder="Ingrese Nombre o Código" tabindex="0"
+      (keyup.enter)="getCustomers({texto: valorActualBuscador})" [(ngModel)]="valorActualBuscador"
+      (click)="getCustomers({texto: valorActualBuscador})" />
+    <button class="cb-input-group__icon cb-btn">
+      <i class="fas fa-search input-icon text-violet"> </i>
+    </button>
+    <button *ngIf="valorActualBuscador" class="cb-input-group__icon cb-btn">
+      <i class="cb-icon cb-icon--cross" (click)="limpiarBusqueda()"></i>
+    </button>
+  </div>
+</section>
+
+<section class="cb-section cb-section--table cb-section--table__scrollbar-y">
+  <table class="cb-table cb-table__tr" (scrollTracker)="scrollBottom()" [finalScroll]="finalScroll">
+    <tbody class="cb-table__body">
+      <tr *ngIf="buscando" class="cb-table__tr">
+        <td class="cb-table__td">
+          <div class="cb-card cb-spinner">
+            <div class="ball-clip-rotate-multiple">
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="sinDatos" class="cb-table__tr">
+        <td class="cb-table__td">
+          <div class="cb-card cb-sin-datos">
+            <span class="cb-card__subtitle">
+              <h4>
+                <strong>No hay resultados, por favor verifique la búsqueda</strong>
+              </h4>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr class="cb-table__tr" *ngFor="let customer of customers">
+        <td class="cb-table__td">
+          <div class="cb-card">
+            <div class="cb-card__title">
+              <h4>
+                <strong>{{"["+ customer.customerId + "] " + customer.customerName }}</strong>
+              </h4>
+            </div>
+
+            <div class="cb-card__subtitle pr-4">
+              <p class="cb-card__subtitle__item">
+                {{ customer.customerAddress.trim() + " - " +
+                customer.customerCity.trim()}}
+              </p>
+            </div>
+            <div class="cb-toolbar">
+              <button class="btn cb-btn cb-btn--only-icon" style="color: white"
+                style="color: #9d9d9d; background-color: transparent; cursor: pointer; padding: 4px;"
+                (click)="eliminarCustomer(customer)">
+                <span class="cb-menu__icon cb-icon cb-icon--delete"></span>
+              </button>
+
+              <button class="btn cb-btn cb-btn--only-icon" style="color: white"
+                style="color: #9d9d9d; background-color: transparent; cursor: pointer; padding: 4px;"
+                (click)="editarCustomer(customer)">
+                <span class="cb-menu__icon cb-icon cb-icon--edit"></span>
+              </button>
+
+              <span>
+                <i type="button" class="fas fa-chevron-right text-violet"
+                  style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;"
+                  (click)="seleccionarCustomer(customer)"
+                  [routerLink]="[(customer) ? '../../datos-personales/consulta/' + customer.customerName : '' ]"></i>
+              </span>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

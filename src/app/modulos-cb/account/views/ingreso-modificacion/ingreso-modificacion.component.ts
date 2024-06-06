@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ICustomer } from '@cb/core/interfaces/customer.interface';
-import { CustomerService } from '@cb/core/services/customer.service';
+import { IAccount } from '@cb/core/interfaces/account.interface';
+import { AccountService } from '@cb/core/services/accounts.service';
 import { ModalActivoRef } from 'src/app/shared/components/modal';
 import { IDialogConfig } from 'src/app/shared/dialogo/interfaces/dialog-config';
 import { DialogService } from 'src/app/shared/dialogo/services/dialog-service.service';
@@ -23,24 +23,21 @@ export enum Estado {
   styleUrls: ['./ingreso-modificacion.component.scss']
 })
 export class IngresoModificacionComponent implements OnInit {
-  customer!: ICustomer | null;
-  grupoCustomer: FormGroup;
+  account!: IAccount | null;
+  grupoAccount: FormGroup;
   estado: Estado = Estado.Detalle;
   titulo: string = '';
 
   constructor(
     private fb: FormBuilder,
-    private customerService: CustomerService,
+    private accountService: AccountService,
     private modalActivoRef: ModalActivoRef,
-    private dialogService: DialogService,
-  ) {
-    this.grupoCustomer = this.fb.group({
-      customerId: [],
-      customerName: [''],
-      customerPhone: [''],
-      customerEmail: [''],
-      customerAddress: [''],
-      customerCity: ['']
+    private dialogService: DialogService,) {
+    this.grupoAccount = this.fb.group({
+      accountId: [0],
+      accountBalance: [0],
+      accountType: [],
+      accountCurrency: []
     });
   }
 
@@ -49,29 +46,24 @@ export class IngresoModificacionComponent implements OnInit {
       this.cargarPantalla();
 
       if (this.estado === Estado.Detalle) {
-        this.grupoCustomer.disable();
+        this.grupoAccount.disable();
       }
     }
-
-    // this.customerService.getCustomer().subscribe((customer: ICustomer) => {
-    //   this.customer = customer;
-    //   this.grupoCustomer.patchValue(this.customer);
-    // });
   }
 
   onSubmit(): void {
-    if (this.grupoCustomer.valid) {
-      this.customer = this.grupoCustomer.value;
+    if (this.grupoAccount.valid) {
+      this.account = this.grupoAccount.value;
 
       if (this.estado === Estado.Alta) {
-        this.customerService.setCustomer({ customer: this.customer }).subscribe({
-          next: (customer: ICustomer) => {
-            console.log(customer);
+        this.accountService.setAccount({ account: this.account }).subscribe({
+          next: (account: IAccount) => {
+            console.log(account);
             this.closeForm();
 
             const dialogConfig = {
-              title: 'Cliente creado',
-              message: 'El cliente se ha creado correctamente',
+              title: 'Cuenta creada',
+              message: 'La cuenta se ha creado correctamente',
               tipo: 'exito',
               confirmText: 'Aceptar',
               cancelText: undefined,
@@ -87,22 +79,22 @@ export class IngresoModificacionComponent implements OnInit {
 
       else {
         let dialogConfig = {
-          title: 'Modificar cliente',
-          message: '¿Está seguro que desea modificar el cliente seleccionado?'  ,
+          title: 'Modificar cuenta',
+          message: '¿Está seguro que desea modificar la cuenta seleccionada?',
           tipo: 'advertencia',
           confirmText: 'Aceptar',
           cancelText: 'Cancelar',
         } as IDialogConfig;
 
         this.dialogService.open(dialogConfig).then((aceptar: boolean) => {
-          this.customerService.updateCustomer({ customer: this.customer }).subscribe({
-            next: (customer: ICustomer) => {
-              console.log(customer);
+          this.accountService.updateAccount({ account: this.account }).subscribe({
+            next: (account: IAccount) => {
+              console.log(account);
               this.closeForm();
 
               dialogConfig = {
-                title: 'Cliente modificado',
-                message: 'El cliente se ha modificado correctamente',
+                title: 'Cuenta modificada',
+                message: 'La cuenta se ha modificado correctamente',
                 tipo: 'exito',
                 confirmText: 'Aceptar',
                 cancelText: undefined,
@@ -121,16 +113,15 @@ export class IngresoModificacionComponent implements OnInit {
   }
 
   cargarPantalla() {
-    if (this.customer) {
-      this.grupoCustomer.patchValue(this.customer);
+    if (this.account) {
+      this.grupoAccount.patchValue(this.account);
     }
   }
 
 
   //Cierro el modal
   closeForm(): void {
-    this.customer = null;
+    this.account = null;
     this.modalActivoRef.cerrar();
   }
-
 }

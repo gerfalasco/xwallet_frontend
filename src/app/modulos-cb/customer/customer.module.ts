@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConsultaComponent } from './components/consulta/consulta.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { CustomerService } from '@cb/core/services/customer.service';
+import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CbDropdownModule } from 'src/app/shared/components/cb-dropdown/cb-dropdown.module';
-import { ModalService } from 'src/app/shared/services/modal.service';
+import { ScrollTrackerDirective } from './directives/scroll-tracker.directive';
+import { IngresoModificacionComponent } from './views/ingreso-modificacion.component';
+import { ModalService } from 'src/app/shared/components/modal';
 import { DialogService } from 'src/app/shared/dialogo/services/dialog-service.service';
-import { DialogoModule } from 'src/app/shared/dialogo';
 
 const ROUTES: Routes = [
   {
-    path: 'consulta/:cliente',
+    path: 'consulta',
     component: ConsultaComponent
   }
 ];
@@ -20,24 +21,22 @@ const ROUTES: Routes = [
 @NgModule({
   declarations: [
     ConsultaComponent,
+    IngresoModificacionComponent,
+    ScrollTrackerDirective,
+
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule, 
     HttpClientModule,
     RouterModule.forChild(ROUTES),
     CbDropdownModule,
-    DialogoModule,
   ],
-  exports: [
-    ConsultaComponent
-  ],
+  exports: [ConsultaComponent],
   providers: [
     CustomerService,
     ModalService,
-    DialogService
-  ]
+    DialogService,]
 })
-export class DatosPersonalesModule { }
+export class CustomerModule { }

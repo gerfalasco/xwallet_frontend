@@ -1,42 +1,88 @@
-<!--  -->
-<!-- (ngSubmit)="onSubmit()" -->
-<form class="cb-main" [formGroup]="grupoAccount">
-    <header class="cb-header">
-        <h1 class="cb-header__title">Cuenta</h1>
-    </header>
-
-    <section class="cb-section cb-section--form cb-form" style="display: flex; flex-direction: column; row-gap: 8px">
-        <fieldset class="cb-form__section form-section">
-            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
-
-                <div class="cb-form-field cb-form-field--inline">
-                    <label class="cb-form-field__label">Balance</label>
-                    <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="Balance" />
-                </div>
-
+<form class="cb-main">
+    <div class="body-elements-container">
+        <header class="cb-header" style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      ">
+            <h1 class="cb-header__title">Datos Personales</h1>
+            <div style="display: flex; gap: 5px">
+                <button class="btn cb-btn cb-btn--only-icon" style="color: white" (click)="altaAccount()" style="                    
+                    color: #9d9d9d;
+                    background-color: transparent;
+                ">
+                    <i class="fas fa-plus"></i>
+                </button>
             </div>
 
-            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+        </header>
+    </div>
 
-                <div class="cb-form-field cb-form-field--inline">
-                    <label class="cb-form-field__label">Tipo</label>
-                    <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="Type" />
-                </div>
+    <section class="cb-section cb-section--table">
+        <table class="cb-table cb-table--responsive">
+            <thead class="cb-table__head cb-table__head--only-desk">
+                <tr class="cb-table__tr">
+                    <th class="cb-table__th"></th>
 
-            </div>
+                    <th class="cb-table__th">
+                        <!-- (click)="sortDatos('prima')" -->
+                        Balance
+                        <!-- <i class="cb-icon cb-icon--triangleup"></i>  -->
+                        <!-- <i
+              *ngIf="sortStatus.column === 'prima'"
+              [ngClass]="{
+                'cb-icon--triangledown': sortStatus.direction === 'desc',
+                'cb-icon--triangleup': sortStatus.direction === 'asc'
+              }"
+              class="cbx-icon"
+            ></i> -->
+                    </th>
 
-            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+                    <th class="cb-table__th">
+                        Tipo
+                    </th>
 
-                <div class="cb-form-field cb-form-field--inline">
-                    <label class="cb-form-field__label">Moneda</label>
-                    <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="Currency"
-                    thousandSeparator="."
-                    cbDigitOnly
-                    [numberOfDecimals]="0"
-                    [max]="9" />
-                </div>
+                    <th class="cb-table__th">
+                        Moneda
+                    </th>
+                </tr>
+            </thead>
 
-            </div>
-        </fieldset>
+            <tbody class="cb-table__body">
+                <tr class="cb-table__tr" *ngFor="let account of accounts">
+                    <!-- DESKTOP -->
+                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
+                        <cb-dropdown class="on-hover-visible">
+                            <ul class="cb-menu">
+                                <li class="cb-menu__option" (click)="verAccount(account)">
+                                    <span class="cb-menu__icon cb-icon cb-icon--info"></span>
+                                    <p class="cb-menu__title">Ver</p>
+                                </li>
+
+                                <li class="cb-menu__option" (click)="editarAccount(account)">
+                                    <span class="cb-menu__icon cb-icon cb-icon--edit"></span>
+                                    <p class="cb-menu__title">Editar</p>
+                                </li>
+
+                                <li class="cb-menu__option" (click)="eliminarAccount(account)">
+                                    <span class="cb-menu__icon cb-icon cb-icon--delete"></span>
+                                    <p class="cb-menu__title">Eliminar</p>
+                                </li>
+                            </ul>
+                        </cb-dropdown>
+                    </td>
+
+                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
+                        {{ account.accountBalance }}
+                    </td>
+
+                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
+                        {{ account.accountType }}
+                    </td>
+
+                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
+                        {{ account.accountCurrency }}
+                    </td>
+        </table>
     </section>
 </form>

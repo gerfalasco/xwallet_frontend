@@ -1,9 +1,9 @@
-import { ICustomer } from "./customer.interface";
+import { IMovement } from "./movement";
 
 export interface IAccount {
-  Id: number;
-  Balance: number;
-  Type: number;
-  Currency: string;
-  Customer: ICustomer;
+  accountId: number;
+  accountBalance: number;
+  accountType: string;
+  accountCurrency: string;
+  movementListList: IMovement[];
 }

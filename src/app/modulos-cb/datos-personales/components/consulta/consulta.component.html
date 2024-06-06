@@ -1,103 +1,60 @@
-<form class="cb-main">
-    <div class="body-elements-container">
-        <header class="cb-header" style="
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      ">
-            <h1 class="cb-header__title">Datos Personales</h1>
-            <div style="display: flex; gap: 5px">
-                <button class="btn cb-btn cb-btn--only-icon" style="color: white" (click)="altaCustomer()" style="                    
-                    color: #9d9d9d;
-                    background-color: transparent;
-                ">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
+<form class="cb-main" [formGroup]="grupoCustomer">
+  <div class="body-elements-container">
+    <header class="cb-header" style="display: flex; align-items: center; justify-content: space-between;">
+      <h1 class="cb-header__title">{{"Datos Personales: " +  getName()}}</h1>
+      <div style="display: flex; gap: 5px">
+      </div>
+    </header>
+  </div>
 
-        </header>
-    </div>
+  <!--  -->
+  <!-- (ngSubmit)="onSubmit()" -->
+  <section class="cb-section cb-section--form cb-form" style="display: flex; flex-direction: column; row-gap: 8px">
+    <fieldset class="cb-form__section form-section">
+      <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
 
-    <section class="cb-section cb-section--table">
-        <table class="cb-table cb-table--responsive">
-            <thead class="cb-table__head cb-table__head--only-desk">
-                <tr class="cb-table__tr">
-                    <th class="cb-table__th"></th>
+        <div class="cb-form-field phy-form-field--inline">
+          <label class="cb-form-field__label">Nombre</label>
+          <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="customerName" />
+        </div>
 
-                    <th class="cb-table__th">
-                        <!-- (click)="sortDatos('prima')" -->
-                        Nombre
-                        <!-- <i class="cb-icon cb-icon--triangleup"></i>  -->
-                        <!-- <i
-              *ngIf="sortStatus.column === 'prima'"
-              [ngClass]="{
-                'cb-icon--triangledown': sortStatus.direction === 'desc',
-                'cb-icon--triangleup': sortStatus.direction === 'asc'
-              }"
-              class="cbx-icon"
-            ></i> -->
-                    </th>
+      </div>
 
-                    <th class="cb-table__th">
-                        Mail
-                    </th>
+      <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
 
-                    <th class="cb-table__th">
-                        Teléfono
-                    </th>
-                    <th class="cb-table__th">
-                        Ciudad
-                    </th>
+        <div class="cb-form-field phy-form-field--inline">
+          <label class="cb-form-field__label">Teléfono</label>
+          <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="customerPhone" />
+        </div>
 
-                    <th class="cb-table__th">
-                        Dirección
-                    </th>
-                </tr>
-            </thead>
+      </div>
 
-            <tbody class="cb-table__body">
-                <tr class="cb-table__tr" *ngFor="let customer of customers">
-                    <!-- DESKTOP -->
-                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        <cb-dropdown class="on-hover-visible">
-                            <ul class="cb-menu">
-                                <li class="cb-menu__option" (click)="verCustomer(customer)">
-                                    <span class="cb-menu__icon cb-icon cb-icon--info"></span>
-                                    <p class="cb-menu__title">Ver</p>
-                                </li>
+      <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
 
-                                <li class="cb-menu__option" (click)="editarCustomer(customer)">
-                                    <span class="cb-menu__icon cb-icon cb-icon--edit"></span>
-                                    <p class="cb-menu__title">Editar</p>
-                                </li>
+        <div class="cb-form-field phy-form-field--inline">
+          <label class="cb-form-field__label">Mail</label>
+          <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="customerEmail" />
+        </div>
 
-                                <li class="cb-menu__option" (click)="eliminarCustomer(customer)">
-                                    <span class="cb-menu__icon cb-icon cb-icon--delete"></span>
-                                    <p class="cb-menu__title">Eliminar</p>
-                                </li>
-                            </ul>
-                        </cb-dropdown>
-                    </td>
+      </div>
 
-                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        {{ customer.customerName }}
-                    </td>
+      <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
 
-                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        {{ customer.customerEmail }}
-                    </td>
+        <div class="cb-form-field phy-form-field--inline">
+          <label class="cb-form-field__label">Dirección</label>
+          <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="customerAddress" />
+        </div>
 
-                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        {{ customer.customerPhone }}
-                    </td>
+      </div>
 
-                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        {{ customer.customerCity }}
-                    </td>
+      <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
 
-                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        {{ customer.customerAddress }}
-                    </td>
-        </table>
-    </section>
+        <div class="cb-form-field phy-form-field--inline">
+          <label class="cb-form-field__label">Ciudad</label>
+          <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="customerCity" />
+        </div>
+
+      </div>
+    </fieldset>
+  </section>
 </form>

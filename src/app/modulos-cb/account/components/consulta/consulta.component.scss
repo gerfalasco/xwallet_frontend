@@ -1,21 +1,7 @@
 :host {
-  .cb-section {
-    align-self: center;
-  }
-
-  .cb-input {
-    width: 20rem;
-  }
-
-  input:focus {
-    border-color: green !important;
-  }
-
-  input:active {
-    border-color: green !important;
-  }
-
-  .cb-form-field{
-    margin: 1rem 0rem;
+  .on-hover-visible {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 }

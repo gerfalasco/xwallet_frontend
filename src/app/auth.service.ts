@@ -6,7 +6,7 @@ export class AuthService {
 
   login(username: string, password: string, rememberMe: boolean): boolean {
     // Lógica de autenticación
-    if (username === 'usuario' && password === 'contraseña') {
+    if (username === 'usuario' && password === 'core1234*') {
       this.loggedIn = true;
 
       if (rememberMe) {
