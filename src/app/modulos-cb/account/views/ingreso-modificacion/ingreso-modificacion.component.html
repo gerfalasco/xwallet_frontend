@@ -15,21 +15,66 @@
           </div>
   
         </div>
+
+        
   
         <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
   
           <div class="cb-form-field cb-form-field--inline">
             <label class="cb-form-field__label">Tipo</label>
-            <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="accountType" />
+            <div class="cb-input-group">
+              <select
+                class="cb-input-group__input cb-input"
+                style="height: 22px;"
+                formControlName="accountType"
+              >
+                <option
+                  *ngFor="let accountType of accountsType"
+                  [value]="accountType.Descripcion"
+                >
+                  {{ accountType.Descripcion }}
+                </option>
+              </select>
+              <button
+              *ngIf="grupoAccount.get('accountType')?.value && !grupoAccount.get('accountType')?.disabled"
+                type="button"
+                class="cb-input-group__icon cb-btn"
+                style="cursor: pointer;"
+                (click)="clearAccountType($event)"
+              >
+                <i class="cb-btn__icon cb-icon cb-icon--cross"> </i>
+              </button>
+            </div>
           </div>
   
         </div>
   
-        <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
-  
+        <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">  
           <div class="cb-form-field cb-form-field--inline">
             <label class="cb-form-field__label">Moneda</label>
-            <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="accountCurrency" />
+            <div class="cb-input-group">
+              <select
+                class="cb-input-group__input cb-input"
+                style="height: 22px;"
+                formControlName="accountCurrency"
+              >
+                <option
+                  *ngFor="let currency of currencies"
+                  [value]="currency.Descripcion"
+                >
+                  {{ currency.Descripcion }}
+                </option>
+              </select>
+              <button
+              *ngIf="grupoAccount.get('accountCurrency')?.value && !grupoAccount.get('accountCurrency')?.disabled"
+                type="button"
+                class="cb-input-group__icon cb-btn"
+                style="cursor: pointer;"
+                (click)="clear($event)"
+              >
+                <i class="cb-btn__icon cb-icon cb-icon--cross"> </i>
+              </button>
+            </div>
           </div>
   
         </div>

@@ -5,7 +5,7 @@
         align-items: center;
         justify-content: space-between;
       ">
-            <h1 class="cb-header__title">Datos Personales</h1>
+            <h1 class="cb-header__title">Cuentas</h1>
             <div style="display: flex; gap: 5px">
                 <button class="btn cb-btn cb-btn--only-icon" style="color: white" (click)="altaAccount()" style="                    
                     color: #9d9d9d;
@@ -25,17 +25,7 @@
                     <th class="cb-table__th"></th>
 
                     <th class="cb-table__th">
-                        <!-- (click)="sortDatos('prima')" -->
                         Balance
-                        <!-- <i class="cb-icon cb-icon--triangleup"></i>  -->
-                        <!-- <i
-              *ngIf="sortStatus.column === 'prima'"
-              [ngClass]="{
-                'cb-icon--triangledown': sortStatus.direction === 'desc',
-                'cb-icon--triangleup': sortStatus.direction === 'asc'
-              }"
-              class="cbx-icon"
-            ></i> -->
                     </th>
 
                     <th class="cb-table__th">
@@ -49,8 +39,7 @@
             </thead>
 
             <tbody class="cb-table__body">
-                <tr class="cb-table__tr" *ngFor="let account of accounts">
-                    <!-- DESKTOP -->
+                <tr class="cb-table__tr" *ngFor="let account of accounts; let i = index">
                     <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
                         <cb-dropdown class="on-hover-visible">
                             <ul class="cb-menu">
@@ -68,21 +57,61 @@
                                     <span class="cb-menu__icon cb-icon cb-icon--delete"></span>
                                     <p class="cb-menu__title">Eliminar</p>
                                 </li>
+
+                                <!-- Movimiento -->
+                                <li class="cb-menu__option cb-menu__option--has-submenu">
+                                    <span class="cb-menu__icon cb-icon cb-icon--movement"></span>
+                                    <p class="cb-menu__title">Movimiento</p>
+                                    <ul class="cb-submenu">
+
+                                        <!-- Detalle -->
+                                        <li class="cb-submenu__option"  (click)="verMovimiento(account.movementListList)">
+                                            <span class="cb-submenu__icon cb-icon cb-icon--info"></span>
+                                            <p class="cb-submenu__title">Detalle</p>
+                                        </li>
+
+                                        <!-- Intercambio -->
+                                        <li class="cb-submenu__option">
+                                            <span class="cb-submenu__icon cb-icon cb-icon--exchange"></span>
+                                            <p class="cb-submenu__title">Intercambio</p>
+                                        </li>
+
+                                        <!-- Inversión -->
+                                        <li class="cb-submenu__option">
+                                            <span class="cb-submenu__icon cb-icon cb-icon--investment"></span>
+                                            <p class="cb-submenu__title">Inversión</p>
+                                        </li>
+
+                                        <!-- Transacciones -->
+                                        <li class="cb-submenu__option">
+                                            <span class="cb-submenu__icon cb-icon cb-icon--transaction"></span>
+                                            <p class="cb-submenu__title">Transacciones</p>
+                                        </li>
+
+                                        <!-- Transferencia -->
+                                        <li class="cb-submenu__option">
+                                            <span class="cb-submenu__icon cb-icon cb-icon--transfer"></span>
+                                            <p class="cb-submenu__title">Transferencia</p>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </cb-dropdown>
                     </td>
 
-                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
-                        {{ account.accountBalance }}
+                    <td class="cb-table__td cb-table__td--right cb-table__td--only-desk">
+                        {{ account.accountBalance | decimales: 2}}
                     </td>
 
-                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
+                    <td class="cb-table__td cb-table__td--x cb-table__td--only-desk">
                         {{ account.accountType }}
                     </td>
 
-                    <td class="cb-table__td cb-table__td--center cb-table__td--only-desk">
+                    <td class="cb-table__td cb-table__td--left cb-table__td--only-desk">
                         {{ account.accountCurrency }}
                     </td>
+                </tr>
+            </tbody>
         </table>
     </section>
 </form>

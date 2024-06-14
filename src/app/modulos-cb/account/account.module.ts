@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { ConsultaComponent } from './components/consulta/consulta.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,7 +13,10 @@ import { DialogService } from 'src/app/shared/dialogo/services/dialog-service.se
 import { CbDropdownModule } from 'src/app/shared/components/cb-dropdown/cb-dropdown.module';
 import { DialogoModule } from 'src/app/shared/dialogo';
 import { DataService } from '@cb/core/services/data.service';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { CurrencyService } from '@cb/core/services/currency.service';
+import { AccountTypeService } from '@cb/core/services/account-type.service';
+import { MovementsModule } from '@cb/movements';
+import { PipeModule } from '@cb/core/pipes';
 
 const ROUTES: Routes = [
   {
@@ -34,6 +37,7 @@ const ROUTES: Routes = [
     RouterModule.forChild(ROUTES),
     CbDropdownModule,
     DialogoModule,
+    PipeModule,
   ],
   exports: [
     ConsultaComponent
@@ -41,8 +45,11 @@ const ROUTES: Routes = [
   providers: [
     AccountService,
     CustomerService,
+    CurrencyService ,
+    AccountTypeService,
     ModalService,
-    DialogService
+    DialogService,
+    DecimalPipe,
   ]
 })
 export class AccountModule { }
