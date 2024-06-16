@@ -16,7 +16,7 @@ jobs:
       - name: Install SSH for Windows
         run: |
           choco install openssh -y
-          RefreshEnv  # Actualiza las variables de entorno después de instalar SSH
+          RefreshEnv  # Actualizar las variables de entorno después de instalar SSH
 
       - name: Deploy to EC2
         run: |
