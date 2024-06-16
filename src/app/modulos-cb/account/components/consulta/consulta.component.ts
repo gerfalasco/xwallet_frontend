@@ -9,6 +9,7 @@ import { ModalService } from 'src/app/shared/components/modal';
 import { IDialogConfig } from 'src/app/shared/dialogo/interfaces/dialog-config';
 import { DialogService } from 'src/app/shared/dialogo/services/dialog-service.service';
 import { ConsultaComponent as ConsultaMovementComponent } from '../../../movements/components/consulta/consulta.component';
+import { IngresoComponent } from '@cb/intercambio/views/ingreso/ingreso.component';
 
 @Component({
   selector: 'cb-consulta',
@@ -36,9 +37,10 @@ export class ConsultaComponent implements OnInit {
       this.accounts = accounts.filter(account =>
         this.dataService.currentCustomer?.accountList.some(accountCustomer => {
           return accountCustomer.accountId === account.accountId;
-        }
-        )
+        })
       );
+
+      this.accounts = [...this.accounts].sort((a, b) => a.accountId - b.accountId);
     });
   }
 
@@ -138,5 +140,21 @@ export class ConsultaComponent implements OnInit {
     });
 
     ref.instancia.movements = movimientos;
+  }
+
+  intercammbio(account: IAccount) {
+    const ref = this.modalService.abrir(IngresoComponent, {
+      cerrarConClickFueraDelModal: false,
+    });
+
+    ref.instancia.account = account;
+    ref.instancia.accounts = this.accounts;
+
+    ref.respuesta$.subscribe({
+      next: () => { },
+      error: () => {
+        this.getCustomer();
+      },
+    });
   }
 }
