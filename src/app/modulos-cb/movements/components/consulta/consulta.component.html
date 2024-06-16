@@ -16,14 +16,14 @@
     <table class="cb-table cb-table--responsive">
         <thead class="cb-table__head cb-table__head--only-desk">
             <tr class="cb-table__tr">
-                <th class="cb-table__th">Código</th>
-                <th class="cb-table__th">Monto</th>
-                <th class="cb-table__th">Descripción</th>
-                <th class="cb-table__th">Tipo</th>
+                <th class="cb-table__th" style="cursor: default;">Código</th>
+                <th class="cb-table__th" style="cursor: default;">Monto</th>
+                <th class="cb-table__th" style="cursor: default;">Descripción</th>
+                <th class="cb-table__th" style="cursor: default;">Tipo</th>
             </tr>
         </thead>
         <tbody class="cb-table__body">
-            <tr class="cb-table__tr cb-table__tr--selectable" *ngFor="let movement of movementsFiltrado">
+            <tr class="cb-table__tr cb-table__tr" *ngFor="let movement of movementsFiltrado">
                 <td class="cb-table__td cb-table__td--left">
                     {{ movement.movementId }}
                 </td>
