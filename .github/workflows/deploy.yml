@@ -25,7 +25,7 @@ jobs:
           $pw = ConvertTo-SecureString "qmQ$e%fGO?CCy)J2Yv0MaKY2atHyu;@T" -AsPlainText -Force
           $cred = New-Object System.Management.Automation.PSCredential ("administrator", $pw)
           $sessionOption = New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck
-          Invoke-Command -ComputerName "54.173.51.17" -Credential $cred -ScriptBlock {
+          Invoke-Command -ComputerName "54.173.51.17" -Credential $cred -SessionOption $sessionOption -ScriptBlock {
             Set-Location "C:\inetpub\wwwroot\core.deliver.ar\"
             git pull origin develop
           }
