@@ -1,0 +1,30 @@
+name: Deploy to EC2 Windows
+
+on:
+  push:
+    branches:
+      - develop  # Cambiado a tu rama principal (develop)
+
+jobs:
+  deploy:
+    runs-on: windows-latest  # Se ejecutará en una máquina Windows
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install SSH for Windows
+        run: |
+          choco install openssh -y
+          RefreshEnv  # Actualiza las variables de entorno después de instalar SSH
+
+      - name: Deploy to EC2
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $pw = ConvertTo-SecureString "qmQ$e%fGO?CCy)J2Yv0MaKY2atHyu;@T" -AsPlainText -Force
+          $cred = New-Object System.Management.Automation.PSCredential ("administrator", $pw)
+          Invoke-Command -ComputerName "54.173.51.17" -Credential $cred -ScriptBlock {
+            Set-Location "C:\inetpub\wwwroot\core.deliver.ar\"
+            git pull origin develop
+          }
+
