@@ -17,6 +17,7 @@ import { CurrencyService } from '@cb/core/services/currency.service';
 import { AccountTypeService } from '@cb/core/services/account-type.service';
 import { MovementsModule } from '@cb/movements';
 import { PipeModule } from '@cb/core/pipes';
+import { IntercambioModule } from '@cb/intercambio';
 
 const ROUTES: Routes = [
   {
@@ -38,6 +39,7 @@ const ROUTES: Routes = [
     CbDropdownModule,
     DialogoModule,
     PipeModule,
+    IntercambioModule,
   ],
   exports: [
     ConsultaComponent
