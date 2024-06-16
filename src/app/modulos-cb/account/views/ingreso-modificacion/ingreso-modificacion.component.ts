@@ -115,25 +115,26 @@ export class IngresoModificacionComponent implements OnInit {
         } as IDialogConfig;
 
         this.dialogService.open(dialogConfig).then((aceptar: boolean) => {
-          this.accountService.updateAccount({ account: this.account!, customerId: this.dataService.currentCustomer!.customerId }).subscribe({
-            next: (account: IAccount) => {
-              console.log(account);
-              this.closeForm();
+          if (aceptar) {
+            this.accountService.updateAccount({ account: this.account!, customerId: this.dataService.currentCustomer!.customerId }).subscribe({
+              next: (account: IAccount) => {
+                console.log(account);
+                this.closeForm();
 
-              dialogConfig = {
-                title: 'Cuenta modificada',
-                message: 'La cuenta se ha modificado correctamente',
-                tipo: 'exito',
-                confirmText: 'Aceptar',
-                cancelText: undefined,
-              } as IDialogConfig;
+                dialogConfig = {
+                  title: 'Cuenta modificada',
+                  message: 'La cuenta se ha modificado correctamente',
+                  tipo: 'exito',
+                  confirmText: 'Aceptar'
+                } as IDialogConfig;
 
-              this.dialogService.open(dialogConfig);
-            },
-            error: (error: any) => {
-              console.log(error);
-            }
-          });
+                this.dialogService.open(dialogConfig);
+              },
+              error: (error: any) => {
+                console.log(error);
+              }
+            });
+          }
         });
       }
     }
