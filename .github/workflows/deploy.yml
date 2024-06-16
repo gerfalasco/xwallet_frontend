@@ -16,6 +16,7 @@ jobs:
       - name: Install SSH for Windows
         run: |
           choco install openssh -y
+          Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
           RefreshEnv  # Actualizar las variables de entorno después de instalar SSH
 
       - name: Deploy to EC2
