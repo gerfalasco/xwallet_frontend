@@ -1,0 +1,35 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - develop  # o la rama que deseas monitorear
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Archive the code
+        run: zip -r latest.zip ./*
+
+      - name: Upload to S3
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # Cambia esto si tu región es diferente
+
+      - name: Upload artifact to S3
+        run: aws s3 cp latest.zip s3://github-24/github/latest.zip  # Nombre de nuestro bucket dedicado para el S3 y la subida de los updates de github
+
+      - name: Send command to EC2
+        run: |
+          aws ssm send-command \
+            --document-name "AWS-RunPowerShellScript" \
+            --targets "Key=instanceIds,Values=i-0288ba19c27197b45" \  # Reemplaza con el ID de tu instancia EC2
+            --parameters 'commands=["aws s3 cp s3://github-24/github/latest.zip C:\\inetpub\\wwwroot\\core.deliver.ar\\latest.zip", "Expand-Archive -Path C:\\inetpub\\wwwroot\\core.deliver.ar\\latest.zip -DestinationPath C:\\inetpub\\wwwroot\\core.deliver.ar -Force"]' \
+            --comment "Deploy new version of the app"
