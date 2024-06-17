@@ -21,10 +21,18 @@ export class AccountService {
     return this.httpClient.get<IAccount>(url);
   }
 
-  setAccount({ account }: { account: IAccount | null }) {
+  setAccount({ account, customerId }: { account: IAccount, customerId: number}) {
     if (account) {
       const url = `${this.settingsService.api}api/v1/accounts`;
-      return this.httpClient.post<IAccount>(url, account);
+
+      const body = {
+        "customerId": customerId,
+        "accountBalance": account.accountBalance,
+        "accountType": account.accountType,
+        "accountCurrency": account.accountCurrency
+      };
+
+      return this.httpClient.post<IAccount>(url, body);
     }
 
     else {
@@ -41,9 +49,18 @@ export class AccountService {
     return this.httpClient.delete(url);
   }
 
-  updateAccount({ account }: { account: IAccount | null }) {
+  updateAccount({ account, customerId }: { account: IAccount, customerId: number}) {
     if (account) {
       const url = `${this.settingsService.api}api/v1/accounts/${account.accountId}`;
+
+      const body = {
+        "accountId": account.accountId,
+        "customerId": customerId,
+        "accountBalance": account.accountBalance,
+        "accountType": account.accountType,
+        "accountCurrency": account.accountCurrency
+      };
+
       return this.httpClient.put<IAccount>(url, account);
     }
 

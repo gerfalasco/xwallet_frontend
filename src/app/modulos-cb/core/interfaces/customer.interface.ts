@@ -1,3 +1,5 @@
+import { IAccount } from "./account.interface";
+
 export interface ICustomer {
   customerId: number;
   customerName: string;
@@ -5,4 +7,5 @@ export interface ICustomer {
   customerEmail: string;
   customerAddress: string;
   customerCity: string;
+  accountList: IAccount[];
 }

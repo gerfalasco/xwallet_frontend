@@ -1,0 +1,14 @@
+[
+    {
+        "Id": 1,
+        "Descripcion": "ARS"
+    },
+    {
+        "Id": 2,
+        "Descripcion": "USD"
+    },
+    {
+        "Id": 3,
+        "Descripcion": "XCN"
+    }
+]

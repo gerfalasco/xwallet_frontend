@@ -1,0 +1,10 @@
+[
+    {
+        "Id": "deposit",
+        "Descripcion": "Depósito"
+    },
+    {
+        "Id": "extraction",
+        "Descripcion": "Extracción"
+    }   
+]

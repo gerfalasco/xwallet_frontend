@@ -1,0 +1,54 @@
+<header class="cb-header" style="position: sticky; top: 0px">
+    <h1 class="cb-header__title">Movimientos</h1>
+</header>
+
+<section class="cb-section cb-section--form cb-form grid-container">
+    <div class="cb-form__row grid-row">
+        <div class="cb-form-field cb-form-field--inline">
+            <label class="cb-form-field__label" for="search-input">Buscar</label>
+            <input class="cb-input" type="text" id="search-input" name="search-input" [(ngModel)]="filterTerm"
+                placeholder="Escriba aquí para buscar" (keyup)="keyUpSearch()" />
+        </div>
+    </div>
+</section>
+
+<section class="cb-section cb-section--table">
+    <table class="cb-table cb-table--responsive">
+        <thead class="cb-table__head cb-table__head--only-desk">
+            <tr class="cb-table__tr">
+                <th class="cb-table__th" style="cursor: default;">Código</th>
+                <th class="cb-table__th" style="cursor: default;">Monto</th>
+                <th class="cb-table__th" style="cursor: default;">Descripción</th>
+                <th class="cb-table__th" style="cursor: default;">Tipo</th>
+            </tr>
+        </thead>
+        <tbody class="cb-table__body">
+            <tr class="cb-table__tr cb-table__tr" *ngFor="let movement of movementsFiltrado">
+                <td class="cb-table__td cb-table__td--left">
+                    {{ movement.movementId }}
+                </td>
+                <td class="cb-table__td cb-table__td--rightx">
+                    {{ movement.movementAmount  | decimales: 2}}
+                </td>
+                <td class="cb-table__td cb-table__td--left">
+                    {{ movement.movementDescription }}
+                </td>
+                <td class="cb-table__td cb-table__td--left">
+                    {{ movement.movementType }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<footer class="cb-footer cb-footer--sticky">
+    <div class="cb-footer__toolbar cb-toolbar">
+        <div class="cb-toolbar__content-fixed">
+            <li class="cb-toolbar__option">
+                <button type="button" class="btn cb-btn cb-btn--secondary" (click)="cerrarModal()">
+                    Cerrar
+                </button>
+            </li>
+        </div>
+    </div>
+</footer>

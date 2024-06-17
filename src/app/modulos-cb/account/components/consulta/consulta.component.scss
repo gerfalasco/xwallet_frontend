@@ -4,4 +4,68 @@
     justify-content: center;
     width: 100%;
   }
+
+  /* Estilo para cada opción del menú */
+  .cb-menu__option {
+    position: relative;
+    padding: 10px; /* Ajusta según tus necesidades */
+  }
+
+  /* Submenú */
+  .cb-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: -112.391px;
+    left: 100%; /* Posiciona el submenú a la derecha */
+    display: none;
+    background-color: #fff; /* Ajusta según tus necesidades */
+    border: 1px solid #ccc; /* Ajusta según tus necesidades */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+  /* Mostrar submenú al pasar el ratón por encima de la opción principal */
+  .cb-menu__option--has-submenu:hover .cb-submenu {
+    display: block;
+  }
+
+  .cb-submenu__option:hover {
+    background-color: #f0f0f0; /* Ajusta según tus necesidades */
+}
+
+  /* Estilo para cada opción del submenú */
+  .cb-submenu__option {
+    padding: 6px; /* Ajusta según tus necesidades */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }x
+
+  .cb-submenu__option:hover {
+    background-color: #f0f0f0; /* Ajusta según tus necesidades */
+  }
+
+  /* Asegúrate de que el submenú se vea bien */
+  .cb-submenu__title {
+    margin: 0;
+    padding: 5px 10px; /* Ajusta según tus necesidades */
+    cursor: pointer;
+    color: #646464;
+    font-weight: 600;
+  }
+
+  .cb-submenu__icon {
+    margin-right: 5px; /* Ajusta según tus necesidades */
+    flex-shrink: 0; /* Evita que el icono se reduzca */
+  }
+
+  .cb-icon--movement{
+    width: 20px !important;
+  }
+
+  .cb-icon--exchange, .cb-icon--investment, .cb-icon--transaction, .cb-icon--transfer{
+    width: 22xpx !important;
+  }
 }

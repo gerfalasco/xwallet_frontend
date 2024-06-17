@@ -8,7 +8,7 @@
   margin: 0;
   transition: width 0.3s;
   overflow: hidden; /* Ocultar el contenido que se sale del ancho */
-  z-index: 1000;
+  z-index: 100000;
 }
 
 .sidebar--hidden {
