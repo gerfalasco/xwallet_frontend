@@ -1,4 +1,4 @@
-name: Deploy to EC2 Windows
+name: Deploy to EC2
 
 on:
   push:
@@ -10,23 +10,20 @@ jobs:
     runs-on: windows-latest  # Se ejecutará en una máquina Windows
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Install SSH for Windows
-        run: |
+    - name: Install SSH for Windows
+      run: |
           choco install openssh -y
           Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-          RefreshEnv  # Actualizar las variables de entorno después de instalar SSH
+          RefreshEnv  # Actualiza las variables de entorno después de instalar SSH
 
-      - name: Deploy to EC2
-        run: |
-          $ErrorActionPreference = 'Stop'
-          $pw = ConvertTo-SecureString "qmQ$e%fGO?CCy)J2Yv0MaKY2atHyu;@T" -AsPlainText -Force
-          $cred = New-Object System.Management.Automation.PSCredential ("nombre-de-usuario-ec2", $pw)
-          $sessionOption = New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck
-          Invoke-Command -ComputerName "54.173.51.17" -Credential $cred -SessionOption $sessionOption -ScriptBlock {
-            Set-Location "C:\inetpub\wwwroot\core.deliver.ar"
-            git pull origin develop
-          }
+    - name: Set up SSH connection
+      uses: webfactory/ssh-agent@v0.5.4
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+    - name: SSH into EC2 instance and perform git pull
+      run: |
+        ssh -o StrictHostKeyChecking=no administrator@54.173.51.17 "cd /inetpub/wwwroot/core.deliver.ar && git pull origin develop"
