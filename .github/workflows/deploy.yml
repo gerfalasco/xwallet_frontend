@@ -26,4 +26,4 @@ jobs:
 
     - name: SSH into EC2 instance and perform git pull
       run: |
-        ssh -o StrictHostKeyChecking=no administrator@54.173.51.17 "cd /inetpub/wwwroot/core.deliver.ar && git pull origin develop"
+        ssh -o StrictHostKeyChecking=no administrator@54.173.51.17 "cd \inetpub\wwwroot\core.deliver.ar && git pull origin develop"
