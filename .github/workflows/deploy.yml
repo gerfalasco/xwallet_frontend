@@ -1,36 +1,49 @@
-name: Deploy to EC2
+name: Deploy to EC2 Windows Server
 
 on:
   push:
     branches:
-      - develop  # Cambiado a tu rama principal (develop)
+      - develop
 
 jobs:
   deploy:
-    runs-on: windows-latest  # Se ejecutará en una máquina Windows
+    runs-on: windows-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install SSH for Windows
-      run: |
-          choco install openssh -y
-          Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-          RefreshEnv  # Actualiza las variables de entorno después de instalar SSH
+      - name: Deploy to Windows Server
+        run: |
+          $ErrorActionPreference = 'Stop'
 
-    - name: Set up SSH connection
-      uses: webfactory/ssh-agent@v0.5.4
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # Convert password to secure string
+          $password = ConvertTo-SecureString $env:WINDOWS_PASSWORD -AsPlainText -Force
 
-    - name: Verify SSH connection
-      run: ssh -o StrictHostKeyChecking=no administrator@44.216.5.15 "echo 'SSH connection successful'"
+          # Create credential object
+          $cred = New-Object System.Management.Automation.PSCredential("administrator", $password)
 
-    - name: SSH into EC2 instance and perform git pull
-      run: |
-         ssh -o StrictHostKeyChecking=no administrator@54.173.51.17 "cd C:/inetpub/wwwroot/core.deliver.ar && git fetch origin && git reset --hard origin/develop && git log -1"
+          # Establish a new PSSession
+          $session = New-PSSession -ComputerName 54.173.51.17 -Credential $cred -Authentication Default -UseSSL -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck)
 
-    - name: Check contents of the directory after pull
-      run: |
-         ssh -o StrictHostKeyChecking=no administrator@54.173.51.17 "dir C:/inetpub/wwwroot/core.deliver.ar"
+          # Check if session was created successfully
+          if (-not $session) {
+              Write-Error "Failed to create PSSession."
+              exit 1
+          }
+
+          # Execute commands on remote server
+          Invoke-Command -Session $session -ScriptBlock {
+            cd C:\inetpub\wwwroot\core.deliver.ar
+            if (Test-Path -Path .git) {
+              git pull origin develop
+            } else {
+              git clone https://github.com/gerfalasco/xwallet_frontend .
+              git checkout develop
+            }
+          } -ErrorAction Stop
+
+          # Remove the PSSession
+          Remove-PSSession -Session $session
+        env:
+          WINDOWS_PASSWORD: ${{ secrets.WINDOWS_PASSWORD }}
