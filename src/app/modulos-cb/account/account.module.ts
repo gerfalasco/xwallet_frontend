@@ -18,6 +18,7 @@ import { AccountTypeService } from '@cb/core/services/account-type.service';
 import { MovementsModule } from '@cb/movements';
 import { PipeModule } from '@cb/core/pipes';
 import { IntercambioModule } from '@cb/intercambio';
+import { InversionModule } from '@cb/inversion';
 
 const ROUTES: Routes = [
   {
@@ -40,6 +41,7 @@ const ROUTES: Routes = [
     DialogoModule,
     PipeModule,
     IntercambioModule,
+    InversionModule,
   ],
   exports: [
     ConsultaComponent
