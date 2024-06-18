@@ -34,6 +34,7 @@ speed-measure-plugin.json
 
 # misc
 /.angular/cache
+/.angular/cache/13.3.11
 /.sass-cache
 /node_modules/.cache/
 /connect.lock
