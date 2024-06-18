@@ -52,24 +52,44 @@ jobs:
 
               if ($isEmpty) {
                 Write-Output "Directory is empty. Cloning repository."
-                git clone $repoUrl .
-                cd $repoPath
-                git checkout develop
+
+                # Intentar clonar el repositorio y capturar errores
+                try {
+                  git clone $repoUrl .
+                  if ($LASTEXITCODE -ne 0) {
+                    throw "Git clone failed with exit code: $LASTEXITCODE"
+                  }
+                  cd $repoPath
+                  git checkout develop
+                  if ($LASTEXITCODE -ne 0) {
+                    throw "Git checkout failed with exit code: $LASTEXITCODE"
+                  }
+                } catch {
+                  Write-Error "An error occurred during the git clone/checkout operations: $_"
+                  exit 1
+                }
               } elseif (Test-Path -Path ".git") {
                 Write-Output "Git repository found. Pulling latest changes from develop branch."
                 git fetch origin
+                if ($LASTEXITCODE -ne 0) {
+                  throw "Git fetch failed with exit code: $LASTEXITCODE"
+                }
                 git reset --hard origin/develop
+                if ($LASTEXITCODE -ne 0) {
+                  throw "Git reset failed with exit code: $LASTEXITCODE"
+                }
               } else {
                 Write-Output "Directory is not empty and no git repository found. Removing existing files and cloning repository."
                 Remove-Item -Recurse -Force * -ErrorAction SilentlyContinue
                 git clone $repoUrl .
+                if ($LASTEXITCODE -ne 0) {
+                  throw "Git clone failed with exit code: $LASTEXITCODE"
+                }
                 cd $repoPath
                 git checkout develop
-              }
-
-              # Validar la operación de git
-              if ($LASTEXITCODE -ne 0) {
-                throw "Git operation failed with exit code: $LASTEXITCODE"
+                if ($LASTEXITCODE -ne 0) {
+                  throw "Git checkout failed with exit code: $LASTEXITCODE"
+                }
               }
 
             } catch {
@@ -82,4 +102,3 @@ jobs:
           Remove-PSSession -Session $session
         env:
           WINDOWS_PASSWORD: ${{ secrets.WINDOWS_PASSWORD }}
-
