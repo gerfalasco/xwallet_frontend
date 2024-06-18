@@ -47,15 +47,23 @@ jobs:
               cd $repoPath
               Write-Output "Navigated to the target directory: $repoPath"
 
-              # Verificar si el directorio contiene un repositorio git
-              if (Test-Path -Path ".git") {
+              # Verificar si el directorio está vacío
+              $isEmpty = -not (Get-ChildItem -Path $repoPath -Recurse | Where-Object { -not $_.PSIsContainer })
+
+              if ($isEmpty) {
+                Write-Output "Directory is empty. Cloning repository."
+                git clone $repoUrl .
+                cd $repoPath
+                git checkout develop
+              } elseif (Test-Path -Path ".git") {
                 Write-Output "Git repository found. Pulling latest changes from develop branch."
                 git fetch origin
                 git reset --hard origin/develop
               } else {
-                Write-Output "Git repository not found. Cloning repository."
+                Write-Output "Directory is not empty and no git repository found. Removing existing files and cloning repository."
                 Remove-Item -Recurse -Force * -ErrorAction SilentlyContinue
                 git clone $repoUrl .
+                cd $repoPath
                 git checkout develop
               }
 
