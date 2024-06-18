@@ -35,19 +35,35 @@ jobs:
           # Ejecutar comandos en el servidor remoto con registro detallado
           Invoke-Command -Session $session -ScriptBlock {
             try {
-              cd C:\inetpub\wwwroot\core.deliver.ar
-              Write-Output "Navigated to the target directory."
+              $repoPath = "C:\inetpub\wwwroot\core.deliver.ar"
+              $repoUrl = "https://github.com/gerfalasco/xwallet_frontend"
 
-              if (Test-Path -Path .git) {
-                Write-Output "Git repository found. Pulling latest changes."
-                git pull origin develop
+              # Verificar si el directorio de destino existe
+              if (-Not (Test-Path -Path $repoPath)) {
+                Write-Output "Creating target directory: $repoPath"
+                New-Item -Path $repoPath -ItemType Directory | Out-Null
+              }
+
+              cd $repoPath
+              Write-Output "Navigated to the target directory: $repoPath"
+
+              # Verificar si el directorio contiene un repositorio git
+              if (Test-Path -Path ".git") {
+                Write-Output "Git repository found. Pulling latest changes from develop branch."
+                git fetch origin
+                git reset --hard origin/develop
               } else {
-                Write-Output "Git repository not found. Removing existing files and cloning repository."
-                Remove-Item -Recurse -Force *
-                git clone https://github.com/gerfalasco/xwallet_frontend .
-                cd xwallet_frontend
+                Write-Output "Git repository not found. Cloning repository."
+                Remove-Item -Recurse -Force * -ErrorAction SilentlyContinue
+                git clone $repoUrl .
                 git checkout develop
               }
+
+              # Validar la operación de git
+              if ($LASTEXITCODE -ne 0) {
+                throw "Git operation failed with exit code: $LASTEXITCODE"
+              }
+
             } catch {
               Write-Error "An error occurred during the git operations: $_"
               exit 1
@@ -58,4 +74,5 @@ jobs:
           Remove-PSSession -Session $session
         env:
           WINDOWS_PASSWORD: ${{ secrets.WINDOWS_PASSWORD }}
+
 
