@@ -17,33 +17,45 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
 
-          # Convert password to secure string
+          # Convertir contraseña a cadena segura
           $password = ConvertTo-SecureString $env:WINDOWS_PASSWORD -AsPlainText -Force
 
-          # Create credential object
+          # Crear objeto de credencial
           $cred = New-Object System.Management.Automation.PSCredential("administrator", $password)
 
-          # Establish a new PSSession
+          # Establecer una nueva sesión PSSession
           $session = New-PSSession -ComputerName 54.173.51.17 -Credential $cred -Authentication Default -UseSSL -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck)
 
-          # Check if session was created successfully
+          # Verificar si la sesión fue creada exitosamente
           if (-not $session) {
               Write-Error "Failed to create PSSession."
               exit 1
           }
 
-          # Execute commands on remote server
+          # Ejecutar comandos en el servidor remoto con registro detallado
           Invoke-Command -Session $session -ScriptBlock {
-            cd C:\inetpub\wwwroot\core.deliver.ar
-            if (Test-Path -Path .git) {
-              git pull origin develop
-            } else {
-              git clone https://github.com/gerfalasco/xwallet_frontend .
-              git checkout develop
+            try {
+              cd C:\inetpub\wwwroot\core.deliver.ar
+              Write-Output "Navigated to the target directory."
+
+              if (Test-Path -Path .git) {
+                Write-Output "Git repository found. Pulling latest changes."
+                git pull origin develop
+              } else {
+                Write-Output "Git repository not found. Removing existing files and cloning repository."
+                Remove-Item -Recurse -Force *
+                git clone https://github.com/gerfalasco/xwallet_frontend .
+                cd xwallet_frontend
+                git checkout develop
+              }
+            } catch {
+              Write-Error "An error occurred during the git operations: $_"
+              exit 1
             }
           } -ErrorAction Stop
 
-          # Remove the PSSession
+          # Eliminar la sesión PSSession
           Remove-PSSession -Session $session
         env:
           WINDOWS_PASSWORD: ${{ secrets.WINDOWS_PASSWORD }}
+
