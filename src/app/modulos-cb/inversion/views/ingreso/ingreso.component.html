@@ -1,0 +1,62 @@
+<form class="cb-main" [formGroup]="grupoInversion" (ngSubmit)="onSubmit()">
+    <header class="cb-header">
+        <i class="cb-btn__icon cb-icon cb-header__title" style="margin-right: 0.5rem"></i>
+        <h1 class="cb-header__title" style="width: 100%; text-wrap: nowrap; margin-top: 0.1rem">Inversión</h1>
+    </header>
+
+    <section class="cb-section cb-section--form cb-form" style="display: flex; flex-direction: column; row-gap: 8px">
+        <fieldset class="cb-form__section form-section">
+            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+
+                <div class="cb-form-field cb-form-field--inline">
+                    <label class="cb-form-field__label">Cuenta</label>
+                    <input type="text" class="cb-form-field__input cb-input cb-input--small"
+                        formControlName="accountDescription" />
+                </div>
+
+            </div>
+
+            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+                <div class="cb-form-field cb-form-field--inline">
+                    <label class="cb-form-field__label">Cliente</label>
+                    <input type="text" class="cb-form-field__input cb-input cb-input--small"
+                        formControlName="customerName" />
+                </div>
+
+            </div>            
+
+            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+                <div class="cb-form-field cb-form-field--inline">
+                    <label class="cb-form-field__label">Cantidad de días</label>
+                    <input type="number" class="cb-form-field__input cb-input cb-input--small"
+                        formControlName="investmentDays" />
+                </div>
+
+            </div>
+
+            <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
+                <div class="cb-form-field cb-form-field--inline">
+                    <label class="cb-form-field__label">Monto</label>
+                    <input type="number" class="cb-form-field__input cb-input cb-input--small"
+                        formControlName="investmentAmount" />
+                </div>
+
+            </div>
+        </fieldset>
+    </section>
+
+    <footer class="cb-footer cb-footer--sticky">
+        <div class="cb-footer__toolbar cb-toolbar">
+            <div class="cb-toolbar__content-fixed">
+                <li class="cb-toolbar__option">
+                    <button type="button" class="btn cb-btn cb-btn--secondary" (click)="closeForm()">
+                        Cancelar
+                    </button>
+                </li>
+                <li class="cb-toolbar__option">
+                    <button type="submit" class="btn cb-btn ">Guardar</button>
+                </li>
+            </div>
+        </div>
+    </footer>
+</form>
