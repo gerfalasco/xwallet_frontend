@@ -84,7 +84,7 @@ export class IngresoComponent implements OnInit {
   onSubmit(): void {
     this.intercambio = this.grupoIntercambio.value;
     const transactionType = this.transactionTypes.find(transactionType => transactionType.Id === this.intercambio?.transactionType);
-    let mensaje = '¿Está seguro que desea realizar la operación a la cuenta seleccionada?';
+    const mensaje = '¿Está seguro que desea realizar la operación a la cuenta seleccionada?';
 
     let dialogConfig = {
       title: transactionType?.Descripcion,
@@ -96,7 +96,7 @@ export class IngresoComponent implements OnInit {
 
     this.dialogService.open(dialogConfig).then((aceptar: boolean) => {
       if (aceptar) {
-        this.movementsService.setMovement({ intercambio: this.intercambio! }).subscribe({
+        this.movementsService.exchange({ intercambio: this.intercambio! }).subscribe({
           next: (account: IAccount) => {
             console.log(account);
             this.closeForm();
