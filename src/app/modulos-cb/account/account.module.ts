@@ -19,6 +19,8 @@ import { MovementsModule } from '@cb/movements';
 import { PipeModule } from '@cb/core/pipes';
 import { IntercambioModule } from '@cb/intercambio';
 import { InversionModule } from '@cb/inversion';
+import { TransaccionModule } from '@cb/transaccion';
+import { TransferenciaModule } from '@cb/transferencia';
 
 const ROUTES: Routes = [
   {
@@ -42,6 +44,8 @@ const ROUTES: Routes = [
     PipeModule,
     IntercambioModule,
     InversionModule,
+    TransaccionModule,
+    TransferenciaModule,
   ],
   exports: [
     ConsultaComponent

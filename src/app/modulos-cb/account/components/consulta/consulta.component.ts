@@ -11,6 +11,8 @@ import { DialogService } from 'src/app/shared/dialogo/services/dialog-service.se
 import { ConsultaComponent as ConsultaMovementComponent } from '../../../movements/components/consulta/consulta.component';
 import { IngresoComponent } from '@cb/intercambio/views/ingreso/ingreso.component';
 import { IngresoComponent as IngresoInversionComponent} from '@cb/inversion/views/ingreso/ingreso.component';
+import { IngresoComponent as IngresoTransaccionComponent} from '@cb/transaccion/views/ingreso/ingreso.component';
+import { IngresoComponent as IngresoTransferenciaComponent} from '@cb/transferencia/views/ingreso/ingreso.component';
 
 @Component({
   selector: 'cb-consulta',
@@ -165,6 +167,37 @@ export class ConsultaComponent implements OnInit {
     });
 
     ref.instancia.account = account;
+
+    ref.respuesta$.subscribe({
+      next: () => { },
+      error: () => {
+        this.getCustomer();
+      },
+    });
+  }
+
+  transaccion(account: IAccount) {
+    const ref = this.modalService.abrir(IngresoTransaccionComponent, {
+      cerrarConClickFueraDelModal: false,
+    });
+
+    ref.instancia.account = account;
+
+    ref.respuesta$.subscribe({
+      next: () => { },
+      error: () => {
+        this.getCustomer();
+      },
+    });
+  }
+
+  transferencia(account: IAccount) {
+    const ref = this.modalService.abrir(IngresoTransferenciaComponent, {
+      cerrarConClickFueraDelModal: false,
+    });
+
+    ref.instancia.account = account;
+    ref.instancia.accounts = this.accounts;
 
     ref.respuesta$.subscribe({
       next: () => { },
