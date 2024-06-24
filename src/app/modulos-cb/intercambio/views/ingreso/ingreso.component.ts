@@ -45,10 +45,7 @@ export class IngresoComponent implements OnInit {
 
     this.grupoIntercambio.controls['originAccountDescription'].disable();
     this.grupoIntercambio.controls['originCustomerName'].disable();
-
-    this.grupoIntercambio.valueChanges.subscribe((value) => {
-      console.log(value);
-    });
+    this.grupoIntercambio.valueChanges.subscribe((value) => {});
   }
 
   ngOnInit(): void {
@@ -62,7 +59,6 @@ export class IngresoComponent implements OnInit {
     this.transactionTypeService.getTransactionTypes().subscribe((transactionTypes: ITransactionType[]) => {
       this.transactionTypes = transactionTypes;
     });
-
   }
 
   clear($event: MouseEvent): void {
