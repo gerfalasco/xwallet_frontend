@@ -9,6 +9,7 @@ import { AuthGuard } from './auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SettingsService } from './services/settings.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginService } from './services/login.service';
 
 const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -27,7 +28,7 @@ const ROUTES: Routes = [
     ReactiveFormsModule,    
     HttpClientModule,
   ],
-  providers: [AuthService, AuthGuard, SettingsService], // Agrega AuthGuard como un proveedor
+  providers: [AuthService, AuthGuard, SettingsService, LoginService], // Agrega AuthGuard como un proveedor
   bootstrap: [AppComponent]
 })
 export class AppModule  {
