@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { DecimalesPipe } from './decimales.pipe';
+import { DecimalFormatDirective } from '../directives/decimal-format.directive';
 
 
 
 @NgModule({
   declarations: [
-    DecimalesPipe
+    DecimalesPipe,
+    DecimalFormatDirective,
   ],
   imports: [
   ],
   exports: [
-    DecimalesPipe
+    DecimalesPipe,
+    DecimalFormatDirective,
   ]
 })
 export class PipeModule { }
