@@ -55,7 +55,7 @@
   
         </div>
 
-        <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">  
+        <!-- <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">  
           <div class="cb-form-field cb-form-field--inline">
             <label class="cb-form-field__label">Transacción</label>
             <div class="cb-input-group">
@@ -82,12 +82,12 @@
               </button>
             </div>
           </div>  
-        </div>
+        </div> -->
 
         <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">  
           <div class="cb-form-field cb-form-field--inline">
             <label class="cb-form-field__label">Monto</label>
-            <input type="number" class="cb-form-field__input cb-input cb-input--small" formControlName="amount" />
+              <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="amount" [cbDecimalFormat]="2">
           </div>
   
         </div>

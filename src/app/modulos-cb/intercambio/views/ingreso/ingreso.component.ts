@@ -39,8 +39,8 @@ export class IngresoComponent implements OnInit {
       destinationAccountId: [],
       originCustomerName: [],
       originCustomerId: [],
-      transactionType: [],
-      amount: []
+      // transactionType: [],
+      amount: [0]
     });
 
     this.grupoIntercambio.controls['originAccountDescription'].disable();
@@ -56,9 +56,9 @@ export class IngresoComponent implements OnInit {
     this.grupoIntercambio.controls['originAccountDescription'].setValue(originAccountDescription);
     this.accounts = this.accounts.filter(account => account.accountId !== this.account?.accountId);
 
-    this.transactionTypeService.getTransactionTypes().subscribe((transactionTypes: ITransactionType[]) => {
-      this.transactionTypes = transactionTypes;
-    });
+    // this.transactionTypeService.getTransactionTypes().subscribe((transactionTypes: ITransactionType[]) => {
+    //   this.transactionTypes = transactionTypes;
+    // });
   }
 
   clear($event: MouseEvent): void {
@@ -79,11 +79,12 @@ export class IngresoComponent implements OnInit {
 
   onSubmit(): void {
     this.intercambio = this.grupoIntercambio.value;
-    const transactionType = this.transactionTypes.find(transactionType => transactionType.Id === this.intercambio?.transactionType);
+    // const transactionType = this.transactionTypes.find(transactionType => transactionType.Id === this.intercambio?.transactionType);
     const mensaje = '¿Está seguro que desea realizar la operación a la cuenta seleccionada?';
 
     let dialogConfig = {
-      title: transactionType?.Descripcion,
+      // title: transactionType?.Descripcion,
+      title: "Exchange",
       message: mensaje,
       tipo: 'advertencia',
       confirmText: 'Aceptar',
@@ -98,7 +99,7 @@ export class IngresoComponent implements OnInit {
             this.closeForm();
 
             dialogConfig = {
-              title: transactionType?.Descripcion + ' realizada',
+              title: 'Exchange realizada',
               message: 'La operación ha sido realizada correctamente',
               tipo: 'exito',
               confirmText: 'Aceptar',
