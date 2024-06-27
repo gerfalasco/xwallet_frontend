@@ -11,11 +11,6 @@ const ROUTES: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: "retiro",
-        loadChildren: () =>
-          import("@cb/retiro").then((m) => m.RetiroModule),
-      },
-      {
         path: "cliente",
         loadChildren: () =>
           import("@cb/customer").then((m) => m.CustomerModule),
@@ -24,11 +19,6 @@ const ROUTES: Routes = [
         path: "cuenta",
         loadChildren: () =>
           import("@cb/account").then((m) => m.AccountModule),
-      },
-      {
-        path: "deposito",
-        loadChildren: () =>
-          import("@cb/deposito").then((m) => m.DepositoModule),
       },
       {
         path: "datos-personales",
