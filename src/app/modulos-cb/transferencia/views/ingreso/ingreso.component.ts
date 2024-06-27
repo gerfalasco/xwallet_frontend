@@ -21,7 +21,7 @@ export class IngresoComponent implements OnInit {
   grupoTransferencia: FormGroup;
   transactionTypes: ITransactionType[] = [];
   titulo: string = 'Transferencia';
-  transferencia: ITransferencia | null = null;
+  transferencia: ITransferencia = {} as ITransferencia;
 
   constructor(
     private fb: FormBuilder,
@@ -37,10 +37,11 @@ export class IngresoComponent implements OnInit {
       destinationAccountId: [],
       originCustomerName: [],
       originCustomerId: [],
-      transactionType: [],
+      // transactionType: [],
       amount: []
     });
 
+    // this.grupoTransferencia.controls['transactionType'].disable();
     this.grupoTransferencia.controls['originAccountDescription'].disable();
     this.grupoTransferencia.controls['originCustomerName'].disable();
     this.grupoTransferencia.valueChanges.subscribe((value) => {});
@@ -52,11 +53,13 @@ export class IngresoComponent implements OnInit {
     this.grupoTransferencia.controls['originAccountId'].setValue(this.account?.accountId);
     const originAccountDescription = this.account?.accountType + '(' + this.account?.accountCurrency + ')';
     this.grupoTransferencia.controls['originAccountDescription'].setValue(originAccountDescription);
-    this.accounts = this.accounts.filter(account => account.accountId !== this.account?.accountId);
+    // this.grupoTransferencia.controls['transactionType'].setValue("transfer");
+    
+    // this.accounts = this.accounts.filter(account => account.accountId !== this.account?.accountId);
 
-    this.transactionTypeService.getTransactionTypes().subscribe((transactionTypes: ITransactionType[]) => {
-      this.transactionTypes = transactionTypes;
-    });
+    // this.transactionTypeService.getTransactionTypes().subscribe((transactionTypes: ITransactionType[]) => {
+    //   this.transactionTypes = transactionTypes;
+    // });
   }
 
 
@@ -78,11 +81,13 @@ export class IngresoComponent implements OnInit {
 
   onSubmit(): void {
     this.transferencia = this.grupoTransferencia.value;
-    const transactionType = this.transactionTypes.find(transactionType => transactionType.Id === this.transferencia?.transactionType);
+    // this.transferencia.transactionType = this.grupoTransferencia.controls["transactionType"].value;
+    // const transactionType = this.transactionTypes.find(transactionType => transactionType.Id === this.transferencia?.transactionType );        
     const mensaje = '¿Está seguro que desea realizar la operación a la cuenta seleccionada?';
 
     let dialogConfig = {
-      title: transactionType?.Descripcion,
+      // title: transactionType?.Descripcion,
+      title: 'Transferencia',
       message: mensaje,
       tipo: 'advertencia',
       confirmText: 'Aceptar',
@@ -97,7 +102,8 @@ export class IngresoComponent implements OnInit {
             this.closeForm();
 
             dialogConfig = {
-              title: transactionType?.Descripcion + ' realizada',
+              // title: transactionType?.Descripcion + ' realizada',
+              title: 'Transferencia realizada',
               message: 'La operación ha sido realizada correctamente',
               tipo: 'exito',
               confirmText: 'Aceptar',

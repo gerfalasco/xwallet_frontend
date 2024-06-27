@@ -1,7 +1,6 @@
 <form class="cb-main" [formGroup]="grupoTransferencia" (ngSubmit)="onSubmit()">
   <header class="cb-header">
-    <i class="cb-btn__icon cb-icon cb-header__title"
-      style="margin-right: 0.5rem"></i>
+    <i class="cb-btn__icon cb-icon cb-header__title" style="margin-right: 0.5rem"></i>
     <h1 class="cb-header__title" style="width: 100%; text-wrap: nowrap; margin-top: 0.1rem">{{titulo}}</h1>
   </header>
 
@@ -11,80 +10,49 @@
 
         <div class="cb-form-field cb-form-field--inline">
           <label class="cb-form-field__label">Cuenta Origen</label>
-          <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="originAccountDescription" />
+          <input type="text" class="cb-form-field__input cb-input cb-input--small"
+            formControlName="originAccountDescription" />
         </div>
 
-      </div>        
+      </div>
 
       <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
 
         <div class="cb-form-field cb-form-field--inline">
           <label class="cb-form-field__label">Cuenta Destino</label>
-          <div class="cb-input-group">
-            <select
-              class="cb-input-group__input cb-input"
-              style="height: 22px;"
-              formControlName="destinationAccountId"
-            >
-              <option
-                *ngFor="let account of accounts"
-                [value]="account.accountId"
-              >
-                {{ account.accountType + ' (' + account.accountCurrency + ')'}}
-              </option>
-            </select>
-            <button
-            *ngIf="grupoTransferencia.get('destinationAccountId')?.value"
-              type="button"
-              class="cb-input-group__icon cb-btn"
-              style="cursor: pointer;"
-              (click)="clear($event)"
-            >
-              <i class="cb-btn__icon cb-icon cb-icon--cross"> </i>
-            </button>
-          </div>
+          <input type="text" class="cb-form-field__input cb-input cb-input--small"
+            formControlName="destinationAccountId" />
         </div>
 
       </div>
 
-      <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">  
+      <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
         <div class="cb-form-field cb-form-field--inline">
           <label class="cb-form-field__label">Cliente</label>
-          <input type="text" class="cb-form-field__input cb-input cb-input--small" formControlName="originCustomerName" />
+          <input type="text" class="cb-form-field__input cb-input cb-input--small"
+            formControlName="originCustomerName" />
         </div>
 
       </div>
 
-      <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">  
+      <!-- <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
         <div class="cb-form-field cb-form-field--inline">
           <label class="cb-form-field__label">Transacción</label>
           <div class="cb-input-group">
-            <select
-              class="cb-input-group__input cb-input"
-              style="height: 22px;"
-              formControlName="transactionType"
-            >
-              <option
-                *ngFor="let transactionType of transactionTypes"
-                [value]="transactionType.Id"
-              >
+            <select class="cb-input-group__input cb-input" style="height: 22px;" formControlName="transactionType">
+              <option *ngFor="let transactionType of transactionTypes" [value]="transactionType.Id">
                 {{ transactionType.Descripcion}}
               </option>
             </select>
-            <button
-            *ngIf="grupoTransferencia.get('transactionType')?.value"
-              type="button"
-              class="cb-input-group__icon cb-btn"
-              style="cursor: pointer;"
-              (click)="clearTransaction($event)"
-            >
+            <button *ngIf="grupoTransferencia.get('transactionType')?.value" type="button"
+              class="cb-input-group__icon cb-btn" style="cursor: pointer;" (click)="clearTransaction($event)" [disabled]="true">
               <i class="cb-btn__icon cb-icon cb-icon--cross"> </i>
             </button>
           </div>
-        </div>  
-      </div>
+        </div>
+      </div> -->
 
-      <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">  
+      <div class="form-section__content" style="display: flex; flex-direction: row; flex-wrap: wrap">
         <div class="cb-form-field cb-form-field--inline">
           <label class="cb-form-field__label">Monto</label>
           <input type="number" class="cb-form-field__input cb-input cb-input--small" formControlName="amount" />
