@@ -17,13 +17,14 @@ export class MovementService {
   exchange({ intercambio }: { intercambio: IIntercambio}) {
     if (intercambio) {
       const url = `${this.settingsService.api}api/v1/operations/exchanges`;
+      const amount = parseFloat(intercambio.amount.toString().replace(/\./g, '').replace(',', '.'));
 
       const body = {
         "originAccountId": intercambio.originAccountId,
         "destinationAccountId": intercambio.destinationAccountId,
         "originCustomerId": intercambio.originCustomerId,
         "transactionType": intercambio.transactionType,
-        "amount": intercambio.amount
+        "amount": amount
       };
 
       return this.httpClient.post<IAccount>(url, body);
@@ -64,12 +65,13 @@ export class MovementService {
   transaction({transaccion}: { transaccion: ITransaccion; }) {
     if (transaccion) {
       const url = `${this.settingsService.api}api/v1/operations/transactions`;
+      const amount = parseFloat(transaccion.amount.toString().replace(/\./g, '').replace(',', '.'));
 
       const body = {
         "accountId": transaccion.accountId,
         "customerId": transaccion.customerId,
         "transactionType": transaccion.transactionType,
-        "amount": transaccion.amount
+        "amount": amount
       };
 
       return this.httpClient.post<IAccount>(url, body);
