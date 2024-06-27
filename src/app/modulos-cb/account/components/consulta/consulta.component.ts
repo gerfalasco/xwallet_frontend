@@ -10,6 +10,9 @@ import { IDialogConfig } from 'src/app/shared/dialogo/interfaces/dialog-config';
 import { DialogService } from 'src/app/shared/dialogo/services/dialog-service.service';
 import { ConsultaComponent as ConsultaMovementComponent } from '../../../movements/components/consulta/consulta.component';
 import { IngresoComponent } from '@cb/intercambio/views/ingreso/ingreso.component';
+import { IngresoComponent as IngresoInversionComponent} from '@cb/inversion/views/ingreso/ingreso.component';
+import { IngresoComponent as IngresoTransaccionComponent} from '@cb/transaccion/views/ingreso/ingreso.component';
+import { IngresoComponent as IngresoTransferenciaComponent} from '@cb/transferencia/views/ingreso/ingreso.component';
 
 @Component({
   selector: 'cb-consulta',
@@ -144,6 +147,52 @@ export class ConsultaComponent implements OnInit {
 
   intercammbio(account: IAccount) {
     const ref = this.modalService.abrir(IngresoComponent, {
+      cerrarConClickFueraDelModal: false,
+    });
+
+    ref.instancia.account = account;
+    ref.instancia.accounts = this.accounts;
+
+    ref.respuesta$.subscribe({
+      next: () => { },
+      error: () => {
+        this.getCustomer();
+      },
+    });
+  }
+
+  inversion(account: IAccount) {
+    const ref = this.modalService.abrir(IngresoInversionComponent, {
+      cerrarConClickFueraDelModal: false,
+    });
+
+    ref.instancia.account = account;
+
+    ref.respuesta$.subscribe({
+      next: () => { },
+      error: () => {
+        this.getCustomer();
+      },
+    });
+  }
+
+  transaccion(account: IAccount) {
+    const ref = this.modalService.abrir(IngresoTransaccionComponent, {
+      cerrarConClickFueraDelModal: false,
+    });
+
+    ref.instancia.account = account;
+
+    ref.respuesta$.subscribe({
+      next: () => { },
+      error: () => {
+        this.getCustomer();
+      },
+    });
+  }
+
+  transferencia(account: IAccount) {
+    const ref = this.modalService.abrir(IngresoTransferenciaComponent, {
       cerrarConClickFueraDelModal: false,
     });
 

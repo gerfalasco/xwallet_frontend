@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { formatCurrency } from \"@angular/common\";\nexport function formatoMoneda(value, cantidadDecimales = 2, signo = \"\") {\n  return formatCurrency(value, \"es-AR\", signo, \"ARS\", `1.${cantidadDecimales}-${cantidadDecimales}`);\n}","map":null,"metadata":{},"sourceType":"module"}

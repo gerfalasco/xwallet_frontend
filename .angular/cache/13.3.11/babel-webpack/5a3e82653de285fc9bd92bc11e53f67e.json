@@ -1,1 +1,0 @@
-{"ast":null,"code":"export function limitNumber({\n  value,\n  limit\n}) {\n  const partes = value.split(/,|\\./);\n  const parteIzquierda = partes[0].slice(0, limit); // corto hasta donde indicamos\n\n  const parteDerecha = partes[1]; // obtengo la parte decimal\n\n  return parteIzquierda + \",\" + parteDerecha;\n}","map":null,"metadata":{},"sourceType":"module"}
