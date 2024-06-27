@@ -6,21 +6,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { CustomerService } from '@cb/core/services/customer.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountService } from '@cb/core/services/accounts.service';
-import { DigitOnlyModule } from 'src/app/shared/digit-only/digit-only.module';
 import { IngresoModificacionComponent } from './views/ingreso-modificacion/ingreso-modificacion.component';
 import { ModalService } from 'src/app/shared/components/modal';
 import { DialogService } from 'src/app/shared/dialogo/services/dialog-service.service';
 import { CbDropdownModule } from 'src/app/shared/components/cb-dropdown/cb-dropdown.module';
 import { DialogoModule } from 'src/app/shared/dialogo';
-import { DataService } from '@cb/core/services/data.service';
 import { CurrencyService } from '@cb/core/services/currency.service';
 import { AccountTypeService } from '@cb/core/services/account-type.service';
-import { MovementsModule } from '@cb/movements';
 import { PipeModule } from '@cb/core/pipes';
 import { IntercambioModule } from '@cb/intercambio';
 import { InversionModule } from '@cb/inversion';
 import { TransaccionModule } from '@cb/transaccion';
 import { TransferenciaModule } from '@cb/transferencia';
+import { MovementsModule } from '@cb/movements';
 
 const ROUTES: Routes = [
   {
