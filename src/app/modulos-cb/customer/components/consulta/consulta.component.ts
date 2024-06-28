@@ -44,9 +44,9 @@ export class ConsultaComponent implements OnInit {
         if (texto) {
           const lowerTexto = texto.toLowerCase();
           this.customers = this.customers.filter(customer =>
-            customer.customerName.toLowerCase().includes(lowerTexto) ||
-            customer.customerAddress.toLowerCase().includes(lowerTexto) ||
-            customer.customerCity.toLowerCase().includes(lowerTexto)
+            customer.customerName.toLowerCase().includes(lowerTexto) //||
+            // customer.customerAddress.toLowerCase().includes(lowerTexto) ||
+            // customer.customerCity.toLowerCase().includes(lowerTexto)
           );
         }
 

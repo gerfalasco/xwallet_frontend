@@ -59,8 +59,8 @@
 
             <div class="cb-card__subtitle pr-4">
               <p class="cb-card__subtitle__item">
-                {{ customer.customerAddress.trim() + " - " +
-                customer.customerCity.trim()}}
+                {{ customer.customerAddress?? "" + " - " +
+                customer.customerCity?? ""}}
               </p>
             </div>
             <div class="cb-toolbar">
