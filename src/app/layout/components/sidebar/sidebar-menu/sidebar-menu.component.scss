@@ -1,7 +1,7 @@
 .sidebar {
-  height: 100%; /* Resta la altura del header */
+  height: 93%; /* Resta la altura del header */
   width: 20%;
-  position: fixed;
+  position: absolute;
   top: 40px; /* Alinea el sidebar debajo del header */
   background-image: linear-gradient(158deg, #5d4ebf 10.46%, #9b91d9 93.13%, #B3ADD9 100%);
   color: white;
