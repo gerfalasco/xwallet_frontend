@@ -55,6 +55,7 @@ export class ConsultaComponent implements OnInit {
         }
 
         this.finalScroll = (customers.length < 40);
+        this.customers = [...this.customers.sort((a, b) => a.customerName.localeCompare(b.customerName))]
       },
       error: (error) => {
         console.error(error);
