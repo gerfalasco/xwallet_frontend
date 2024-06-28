@@ -42,12 +42,13 @@ export class MovementService {
   investment({ inversion }: { inversion: IInversion}) {
     if (inversion) {
       const url = `${this.settingsService.api}api/v1/operations/investments`;
+      const amount = parseFloat(inversion.investmentAmount.toString().replace(/\./g, '').replace(',', '.'));
 
       const body = {
         "accountId": inversion.accountId,
         "customerId": inversion.customerId,
         "investmentDays": inversion.investmentDays,
-        "investmentAmount": inversion.investmentAmount
+        "investmentAmount": amount
       };
 
       return this.httpClient.post<IAccount>(url, body);
@@ -89,13 +90,14 @@ export class MovementService {
   transfer({transferencia}: { transferencia: ITransferencia; }) {
     if (transferencia) {
       const url = `${this.settingsService.api}api/v1/operations/transfers`;
+      const amount = parseFloat(transferencia.amount.toString().replace(/\./g, '').replace(',', '.'));
 
       const body = {
         "originAccountId": transferencia.originAccountId,
         "destinationAccountId": transferencia.destinationAccountId,
         "originCustomerId": transferencia.originCustomerId,
         "transactionType": transferencia.transactionType,
-        "amount": transferencia.amount
+        "amount": amount
       };
 
       return this.httpClient.post<IAccount>(url, body);
