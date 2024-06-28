@@ -36,7 +36,7 @@ export class IngresoComponent implements OnInit {
       customerName: [],
       customerId: [],
       transactionType: [],
-      amount: []
+      amount: [0]
     });
 
     this.grupoTransaccion.controls['accountDescription'].disable();
