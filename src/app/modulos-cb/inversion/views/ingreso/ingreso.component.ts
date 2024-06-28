@@ -31,7 +31,7 @@ export class IngresoComponent implements OnInit {
       customerId: [''],
       customerName: [],
       investmentDays: [''],
-      investmentAmount: ['']
+      investmentAmount: [0]
     });
 
   }
