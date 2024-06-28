@@ -38,7 +38,7 @@ export class IngresoComponent implements OnInit {
       originCustomerName: [],
       originCustomerId: [],
       // transactionType: [],
-      amount: []
+      amount: [0]
     });
 
     // this.grupoTransferencia.controls['transactionType'].disable();
